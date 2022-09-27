@@ -1,13 +1,13 @@
 <?php
 
-$ciclo="DAW";
+   $a = <<<MICADENA
 
-$modulo="DWES";
+Desarrollo de Aplicaciones Web<br/>
 
-print "<p>";
+Desarrollo Web en Entorno Servidor
 
-printf("%s es un módulo de %d curso de %s", $modulo, 2, $ciclo);
+MICADENA;
 
-print "</p>";
+   print $a;
 
 ?> 
