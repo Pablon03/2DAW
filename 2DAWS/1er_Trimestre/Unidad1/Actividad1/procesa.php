@@ -5,16 +5,9 @@
      </head>
 
      <body>
-
-        <?php
-            $nombre = $_POST['nombre'];
-            $modulos = $_POST['modulos'];
-            print "Nombre: ".$nombre."<br />";
-            foreach ($modulos as $modulo) {
-                print "Modulo: ".$modulo."<br />";
-            }
-
-        ?>
+        Alumno: <?php echo $_POST['name']; ?><br/>
+        Módulo: <?php echo $_POST['course']; ?><br/>
+        
      </body>
 
 </html>
