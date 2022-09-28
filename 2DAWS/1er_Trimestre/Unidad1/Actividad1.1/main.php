@@ -24,9 +24,8 @@
     </style>
 </head>
 <body>
-    
-    <?php
-        if(isset($_POST['enviar'])){
+    <!--<?php
+        /*if(isset($_POST['enviar'])){
             $nombre = $_POST['nombre'];
             $modulos = $_POST['modulos'];
 
@@ -36,7 +35,7 @@
                 print "Cursa el siguiente módulo ".$modulo."<br/>";
             }
 
-        } else {
+        } else {*/
     ?>
     <div class="caja">
         <img src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png">
@@ -54,7 +53,6 @@
         <?php
         }
         ?>
-    </div>
-
+    </div> -->
 </body>
 </html>
