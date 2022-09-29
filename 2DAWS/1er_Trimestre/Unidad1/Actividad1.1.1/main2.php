@@ -82,38 +82,14 @@
             <p>Asignaturas que cursa: </p>
 
             <!-- Comprobación para que los checkbox se mantengan -->
-            <?php 
-            if(!empty($_POST['modulos'][0] == "DWES" || $_POST['modulos'][1] == "DWES" )){
-            ?>
-                <input type="checkbox" name="modulos[]" checked value="DWES">
+
+                <input type="checkbox" name="modulos[]" value="DWES" <?php if(in_array("DWES",$_POST['modulos'])){echo 'checked';} ?>>
                 Desarrollo Web en Entorno Servidor
                 <br/>
 
-            <?php
-            } else {
-            ?>
-                <input type="checkbox" name="modulos[]" value="DWES">
-                Desarrollo Web en Entorno Servidor
-                <br/>
-
-
-            <?php 
-            }
-            if(!empty($_POST['modulos'][0] == "DWEC" || $_POST['modulos'][1] == "DWEC" )){
-            ?>
-                <input type="checkbox" name="modulos[]" checked value="DWEC">
+                <input type="checkbox" name="modulos[]" value="DWEC" <?php if(in_array("DWEC",$_POST['modulos'])){echo 'checked';} ?>>
                 Desarrollo Web en Entorno Cliente
                 <br/>
-
-            <?php
-            } else {
-            ?>
-                <input type="checkbox" name="modulos[]" value="DWEC">
-                Desarrollo Web en Entorno Cliente
-                <br/>
-            <?php
-            }
-            ?>
 
             <input type="submit" name="enviar">
         </form>
