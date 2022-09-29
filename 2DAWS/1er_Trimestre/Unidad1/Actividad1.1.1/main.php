@@ -10,94 +10,115 @@
         }
 
         .caja{
-            margin: 0;
-            padding: 15px; 
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border-radius: 15px;    
-            background-color: white;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 100px;
         }
 
+        .form{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            height: 450px;
+            width: 650px;
+            background-color: white;
+            border-radius: 5px;
+        }
 
     </style>
 </head>
 <body>
     <?php
-        // SI LE DAN A ENVIAR
-        if(isset($_POST['enviar'])){
 
-            // SI NOMBRE ESTÁ VACÍO MUESTRA FORM + ERROR
-            if(empty($_POST['nombre'])){
-    ?>
-                <div class="caja">
-                <img src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png">
-                <form method="POST" action="">
-                    <p>Su nombre: </p>
-                    <input type="text" name="nombre" placeholder="Teléfono, usuario o correo electrónico"><br/>
-                    <p>Asignaturas que cursa: </p>
-                    <input type="checkbox" name="modulos[]" value="DWES">
-                    Desarrollo Web en Entorno Servidor<br/>
-                    <input type="checkbox" name="modulos[]" value="DWEC">
-                    Desarrollo Web en Entorno Cliente<br/>
-                    <input type="submit" name="enviar">
-                </form>
-                <h1>Por favor, debe rellenar el campo de nombre</h1>
-        
-            <?php
-            // SI MODULO ESTÁ VACÍO MUESTRA FORM + ERROR
-            } elseif (empty($_POST['modulos'])){
-            ?>
-                <div class="caja">
-                <img src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png">
-                <form method="POST" action="">
-                    <p>Su nombre: </p>
-                    <input type="text" name="nombre" placeholder="Teléfono, usuario o correo electrónico"><br/>
-                    <p>Asignaturas que cursa: </p>
-                    <input type="checkbox" name="modulos[]" value="DWES">
-                    Desarrollo Web en Entorno Servidor<br/>
-                    <input type="checkbox" name="modulos[]" value="DWEC">
-                    Desarrollo Web en Entorno Cliente<br/>
-                    <input type="submit" name="enviar">
-                </form>
-                <h1>Por favor, debe rellenar el campo de módulos</h1>
-            <?php
-            // SI AMBOS ESTÁN RELLENOS MUESTRA EL RESULTADO
-            } else {
-            ?>
-            <?php
-                $nombre = $_POST['nombre'];
-                $modulos = $_POST['modulos'];
+        // En caso de que exista nombre y módulos, me lo mandará
+        if(!empty($_POST['nombre'] && !empty($_POST['modulos']))){
+            $nombre = $_POST['nombre'];
+            $modulos = $_POST['modulos'];
 
-                print "Nombre del alumno: ".$nombre."<br/>";
+            print "Nombre del alumno: ".$nombre."<br/>";
 
-                foreach($modulos as $modulo ){
-                    print "Cursa el siguiente módulo ".$modulo."<br/>";
-                }
+            foreach($modulos as $modulo ){
+                print "Cursa el siguiente módulo ".$modulo."<br/>";
             }
-            ?>
-    </div> 
-    <?php
-        // SI NO LE DAN A ENVIAR MUESTRA EL FORM
+
         } else {
     ?>
-            <div class="caja">
-                <img src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png">
-                <form method="POST" action="">
-                    <p>Su nombre: </p>
-                    <input type="text" name="nombre" placeholder="Teléfono, usuario o correo electrónico"><br/>
-                    <p>Asignaturas que cursa: </p>
-                    <input type="checkbox" name="modulos[]" value="DWES">
-                    Desarrollo Web en Entorno Servidor<br/>
-                    <input type="checkbox" name="modulos[]" value="DWEC">
-                    Desarrollo Web en Entorno Cliente<br/>
-                    <input type="submit" name="enviar">
-                </form>
-                
+
+    <div class="caja">
+        <div class="form">
+        <img src="https://www.instagram.com/static/images/web/logged_out_wordmark.png/7a252de00b20.png">
+        <form method="POST" action="<?php echo $_SERVER['PHP_SELF']?>">
+            
+            <?php
+            if(empty($_POST['nombre']) && isset($_POST['enviar'])){
+            ?>
+
+                <h2>-_- Debe indicar su nombre.</h2>
+
+            <?php
+            }
+            ?>
+            <!-- Nombre -->
+            <p>Su nombre: </p>
+            <input type="text" value="<?php if(!empty($_POST['nombre'])){echo $_POST["nombre"];}?>"
+            name="nombre" placeholder="Teléfono, usuario o correo electrónico">
+            <br/>
+
+            <?php
+            if(empty($_POST['modulos']) && isset($_POST['enviar'])){
+            ?>
+
+                <h2>-_- Debe marcar al menos un módulo</h2>
+
+            <?php
+            }
+            ?>
+            <!-- Módulos -->
+            <p>Asignaturas que cursa: </p>
+
+            <!-- Comprobación para que los checkbox se mantengan -->
+            <?php 
+            if(!empty($_POST['modulos'][0] == "DWES" || $_POST['modulos'][1] == "DWES" )){
+            ?>
+                <input type="checkbox" name="modulos[]" checked value="DWES">
+                Desarrollo Web en Entorno Servidor
+                <br/>
+
+            <?php
+            } else {
+            ?>
+                <input type="checkbox" name="modulos[]" value="DWES">
+                Desarrollo Web en Entorno Servidor
+                <br/>
+
+
+            <?php 
+            }
+            if(!empty($_POST['modulos'][0] == "DWEC" || $_POST['modulos'][1] == "DWEC" )){
+            ?>
+                <input type="checkbox" name="modulos[]" checked value="DWEC">
+                Desarrollo Web en Entorno Cliente
+                <br/>
+
+            <?php
+            } else {
+            ?>
+                <input type="checkbox" name="modulos[]" value="DWEC">
+                Desarrollo Web en Entorno Cliente
+                <br/>
+            <?php
+            }
+            ?>
+
+            <input type="submit" name="enviar">
+        </form>
+        
         <?php
         }
         ?>
-            </div> 
+        </div>
+    </div> 
 </body>
 </html>
