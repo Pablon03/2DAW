@@ -6,18 +6,26 @@
 </head>
 <body>
     <script>
-        let array = [1,2,3,4,5];
+        // Creo el array
+        const array = [1,2,3,4,5];
 
-        let longitudArray = array.length;
+        for (let index = array.length-1; index > 0; index--) {
 
-        let nuevoArray = [];
+            // Cojo el último número
+            let numeroAGirar = array[index];
 
+            // Creo un número random menor a los que hay
+            let numeroRandom = Math.floor(Math.random() * index);
 
-        for (let index = 0; index < array.length; index++) {
-            nuevoArray[index] = array[math.random() * longitudArray-1];
+            // Cojo el número del número random que me da
+            let numeroAGirar2 = array[numeroRandom];
+
+            // Hago los cambios
+            array[index] = numeroAGirar2;
+            array[numeroRandom] = numeroAGirar;
         }
 
-        console.log(nuevoArray);
+        console.log(array);
         
     </script>
 </body>
