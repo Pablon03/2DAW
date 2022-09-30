@@ -1,0 +1,22 @@
+body{
+    background-color: #1d1d1d;
+}
+
+.caja{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 350px;
+    width: 450px;
+    background-color: white;
+    border-radius: 5px;
+    text-align: center;
+}
