@@ -2,37 +2,71 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Fecha y hora restante</title>
+    <title>Fecha y hora restante vuelos</title>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
 </head>
+
 <body>
-    
+
     <?php
-        $horaactual = new DateTime($_POST['fechaActual']);
-        $horavuelo = new DateTime($_POST['fechaVuelo']);
+    // Si está bien relleno muestra resultado
+    if (!empty($_POST['fechaActual']) && !empty($_POST['fechaVuelo'])) {
 
-        $horaActualTime = strtotime($_POST['fechaActual']);
-        $horaVueloTime = strtotime($_POST['fechaVuelo']);
+        $fechaactual = new DateTime($_POST['fechaActual']);
+        $fechavuelo = new DateTime($_POST['fechaVuelo']);
 
-        $restaFecha = $horaActualTime - $horaVueloTime;
+        $interval = $fechaactual->diff($fechavuelo);
 
-        $diferenciaFecha = getdate($restaFecha);
-
-        $interval= $horaactual->diff($horavuelo);
-
-        echo "difference " . $interval->y . " years, " . $interval->m." months, ".$interval->d." days ";
+        echo "difference " . $interval->y . " years, " . $interval->m . " months, " . $interval->d . " days ";
         //echo "<h3>La diferencia es de ".$diff->format("%d")."</h3>";
+
+        if (empty($_POST['horaActual'])){
+            echo '<h4> Usted ha dejado vacío el campo de hora actual</h4>';
+            
+        } elseif (empty($_POST['horaVuelo'])){
+            echo '<h4> Usted ha dejado vacío el campo de hora vuelo</h4>';
+
+        } else {
+            $horaActual = new DateTime($_POST['horaActual']);
+            $horaVuelo = new DateTime($_POST['horaVuelo']);
+
+            $diferenciaHoras = date_diff($horaActual, $horaVuelo);
+            $diferenciaHoras = $diferenciaHoras->format('%H:%i:%s');
+
+            echo '<h4>'.$diferenciaHoras.' estas son las horas restantes</h4>'; 
+        }
+
+    } else {
     ?>
-    <form action="<?php echo $_SERVER['PHP_SELF']?>" method="POST">
-        <label for="hora">Introduce la fecha y hora actual</label>
-        <input type="date" name="fechaActual">
-        <br/>
-        <label for="hora">Introduce la fecha y hora del vuelo</label>
-        <input type="date" name="fechaVuelo">
-        
-        <input type="submit" name="enviar">
-    </form>
-    
+        <div class="caja">
+            <div class="form">
+                <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+                    <label for="hora">Introduce la fecha actual</label>
+                    <input type="date" name="fechaActual">
+                    <br>
+                    <label for="hora">Introduce la hora actual</label>
+                    <input type="time" name="horaActual">
+                    <br>
+                    <br>
+                    <label for="hora">Introduce la fecha vuelo</label>
+                    <input type="date" name="fechaVuelo">
+                    <br>
+                    <label for="hora">Introduce la hora del vuelo</label>
+                    <input type="time" name="horaVuelo">
+                    <br>
+                    <input type="submit" name="enviar">
+                </form>
+            </div>
+        </div>
+
+    <?php
+    }
+    ?>
+
+
 </body>
+
 </html>
