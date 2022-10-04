@@ -1,0 +1,53 @@
+.dot {
+    color: blue;
+    font-weight: bold;
+}
+
+.number {
+    color: red;
+    font-weight: bold;
+}
+
+table.tablaSudoku,
+thead {
+    text-align: center;
+    width: 250px;
+    border-width: 1px;
+    border-spacing: 1px;
+    border-style: solid;
+    border-color: black;
+    border-collapse: collapse;
+}
+
+table.tablaSudoku th,
+td {
+    border-width: 2px;
+    padding: 5px;
+    border-style: solid;
+    border-color: black;
+}
+
+.tablaSudokus {
+    width: 1640px;
+    display: flex;
+    justify-content: center;
+    column-gap: 30px;
+}
+
+.sudokuFacil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sudokuMedio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sudokuDificil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
