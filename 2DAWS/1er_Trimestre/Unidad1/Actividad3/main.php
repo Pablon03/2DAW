@@ -22,7 +22,6 @@
         $interval= $horaactual->diff($horavuelo);
 
         echo "difference " . $interval->y . " years, " . $interval->m." months, ".$interval->d." days ";
-        //echo "<h3>La diferencia es de ".$diff->format("%d")."</h3>";
     ?>
     <form action="<?php echo $_SERVER['PHP_SELF']?>" method="POST">
         <label for="hora">Introduce la fecha y hora actual</label>
