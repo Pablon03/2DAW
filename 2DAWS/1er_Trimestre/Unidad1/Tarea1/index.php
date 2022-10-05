@@ -26,11 +26,11 @@
     <div class="formulario">
         <form action="./pantalla2.php" method="POST">
             <input type="radio" id="facil" name="dificultad" value="arrayFacil" checked>
-            <label for="facil">Facil</label><br>
+            <label for="facil">Facil</label>
             <input type="radio" id="medio" name="dificultad" value="arrayMedio">
-            <label for="medio">Medio</label><br>
+            <label for="medio">Medio</label>
             <input type="radio" id="dificil" name="dificultad" value="arrayDificil">
-            <label for="dificil">Dificil</label>
+            <label for="dificil">Dificil</label><br>
             <input type="submit" name="enviar" value="Elegir" />
         </form>
     </div>

@@ -64,7 +64,7 @@ function crearSudoku($arraySudoku, $nivelDificultad)
 
             // Creación para el nivel Dificil
         case "nivelDificil":
-            echo '<div class="sudokuAvanzado">';
+            echo '<div class="sudokuDificil">';
             echo "<p>Dificil</p>";
             echo '<table class="tablaSudoku">';
             echo '<tr>';

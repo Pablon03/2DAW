@@ -56,7 +56,8 @@ td {
 }
 
 .formulario {
+    padding-top: 25px;
     display: flex;
     justify-content: center;
-    column-gap: 30px;
+    flex-direction: row;
 }
