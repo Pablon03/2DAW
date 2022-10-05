@@ -8,6 +8,10 @@
     font-weight: bold;
 }
 
+body {
+    width: 1640px;
+}
+
 table.tablaSudoku,
 thead {
     text-align: center;
@@ -28,7 +32,6 @@ td {
 }
 
 .tablaSudokus {
-    width: 1640px;
     display: flex;
     justify-content: center;
     column-gap: 30px;
@@ -50,4 +53,10 @@ td {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.formulario {
+    display: flex;
+    justify-content: center;
+    column-gap: 30px;
 }
