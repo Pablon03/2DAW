@@ -13,8 +13,8 @@
     <div class="tablaSudokus">
 
         <!-- Creación de las tres tablas -->
-        <?php include_once './definicionSudokus.php'; ?>
-        <?php require_once './generaTabla.php'; ?>
+        <?php include './definicionSudokus.php'; ?>
+        <?php require './generaTabla.php'; ?>
 
         <?php
         crearSudoku($arrayFacil, 'nivelFacil');
@@ -24,7 +24,7 @@
     </div>
 
     <div class="formulario">
-        <form action="./pantalla2.php" method="POST">
+        <form action="./index2.php" method="POST">
             <input type="radio" id="facil" name="dificultad" value="arrayFacil" checked>
             <label for="facil">Facil</label>
             <input type="radio" id="medio" name="dificultad" value="arrayMedio">

@@ -89,3 +89,39 @@ function crearSudoku($arraySudoku, $nivelDificultad)
         default:;
     }
 }
+
+
+function comprobarDatos()
+{
+    // Comprobar datos del Número Introducido
+    if (empty($_POST['numeroIntroducir'])) {
+        if ($_POST['numeroIntroducir'] > 9 || $_POST['numeroIntroducir'] < 1) {
+            echo '<h3>El número introducido es incorrecto</h3>';
+        }
+    }
+
+    // Comprobar si la fila es válida
+    if (empty($_POST['filaNumero'])) {
+        if (
+            $_POST['filaNumero'] > 9 ||
+            $_POST['filaNumero'] < 1
+        ) {
+            echo '<h3>El número de Fila introducido es incorrecto</h3>';
+        }
+    }
+
+    // Comprobar si la columna es válida
+    if (empty($_POST['columnaNumero'])) {
+        if (
+            $_POST['columnaNumero'] > 9 ||
+            $_POST['columnaNumero'] < 1
+        ) {
+            echo '<h3>El número de Columna es incorrecto</h3>';
+        }
+    }
+}
+
+function insertarNumero($arrayModificar, $numero, $fila, $columna)
+{
+    $arrayModificar[$fila][$columna] = $numero;
+}
