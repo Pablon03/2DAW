@@ -13,8 +13,8 @@
     <div class="tablaSudokus">
 
         <!-- Creación de las tres tablas -->
-        <?php include './definicionSudokus.php'; ?>
-        <?php require './generaTabla.php'; ?>
+        <?php include_once './definicionSudokus.php'; ?>
+        <?php require_once './generaTabla.php'; ?>
 
         <?php
         crearSudoku($arrayFacil, 'nivelFacil');
