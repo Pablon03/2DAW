@@ -14,7 +14,7 @@
 
         <!-- Creación de las tres tablas -->
         <?php include './definicionSudokus.php'; ?>
-        <?php require './generaTabla.php'; ?>
+        <?php require './funciones.php'; ?>
 
         <?php
         crearSudoku($arrayFacil, 'nivelFacil');
