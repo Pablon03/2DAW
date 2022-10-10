@@ -238,21 +238,21 @@ function crearSudokuJuego($arrayInicial, $arrayJuego, $nivelDificultad)
 }
 
 
-function eliminarNumero($arrayInicial, $arrayModificar, $numeroEliminar, $fila, $columna){
+function eliminarNumero($arrayInicial, $arrayModificar, $numeroEliminar, $fila, $columna)
+{
 
-    if(empty($arrayInicial[$fila][$columna])){
+    if (empty($arrayInicial[$fila][$columna])) {
         print_r($arrayModificar);
         print_r($fila);
         print($columna);
 
-        if(!empty($arrayModificar[$fila][$columna]) && $arrayModificar[$fila][$columna] == $numeroEliminar){
+        if (!empty($arrayModificar[$fila][$columna]) && $arrayModificar[$fila][$columna] == $numeroEliminar) {
             $arrayModificar[$fila][$columna] = 0;
-        } else if (!empty($arrayModificar[$fila][$columna]) && $arrayModificar[$fila][$columna] != $numeroEliminar){
+        } else if (!empty($arrayModificar[$fila][$columna]) && $arrayModificar[$fila][$columna] != $numeroEliminar) {
             echo '<h5>El número introducido no coincide con la posición seleccionada</h5>';
         } else {
             echo '<h5>Ha introducido una posición vacía</h5>';
         }
-        
     } else {
         echo '<h5>Usted ha intentado eliminar un número que ya estaba<br>puesto por defecto, eso no se puede hacer</h5>';
     }
@@ -260,8 +260,9 @@ function eliminarNumero($arrayInicial, $arrayModificar, $numeroEliminar, $fila, 
     return $arrayModificar;
 }
 
-function comprobarCandidatos($arrayModificar, $fila, $columna){
-    
+function comprobarCandidatos1($arrayModificar, $fila, $columna)
+{
+
     $arrayCompleto = range(1, 9);
 
     $valoresCandidatosFila = array_diff($arrayCompleto, $arrayModificar[$fila]);
@@ -270,4 +271,84 @@ function comprobarCandidatos($arrayModificar, $fila, $columna){
     $candidatosFinal = array_merge($valoresCandidatosFila, $valoresCandidatosColumna);
 
     print_r($candidatosFinal);
+}
+
+function comprobarCandidatos($arrayModificar, $fila, $columna)
+{
+    // Rango de números posibles en una celda
+    $arrayCompleto = range(1, 9);
+
+    // Coge los valores que falta en la fila seleccionada
+    $valoresCandidatosFila = array_diff($arrayCompleto, $arrayModificar[$fila]);
+
+    // Me da los valores del array de columna que se le indica
+    $datosColumna = array_column($arrayModificar, $columna);
+
+    // Me da los valores que faltan en esa columna
+    $valoresCandidatosColumna = array_diff($arrayCompleto, $datosColumna);
+
+    $candidatosCuadro = array();
+    $contadorCandidatosCuadro = 0;
+    switch ($fila) {
+            // Esto es para el primer cuadro
+        case 0 || 1 || 2:
+            for ($i = 0; $i < 3; $i++) {
+                for ($j = 0; $j < 3; $j++) {
+                    if (in_array($arrayModificar[$i][$j], $arrayCompleto)) {
+                        $candidatosCuadro[$contadorCandidatosCuadro] = $arrayModificar[$i][$j];
+                        $contadorCandidatosCuadro += 1;
+                    }
+                }
+            }
+            $valoresCandidatosCuadro = array_diff($arrayCompleto, $candidatosCuadro);
+            break;
+        case 3 || 4 || 5:
+            for ($i = 3; $i < 6; $i++) {
+                for ($j = 0; $j < 3; $j++) {
+                    if (!in_array($arrayModificar[$i][$j], $arrayCompleto)) {
+                        $candidatosCuadro[$contadorCandidatosCuadro] = $arrayModificar[$i][$j];
+                        $contadorCandidatosCuadro += 1;
+                    }
+                }
+            }
+            $valoresCandidatosCuadro = array_diff($arrayCompleto, $candidatosCuadro);
+            break;
+        case 6 || 7 || 8:
+            for ($i = 6; $i < 9; $i++) {
+                for ($j = 0; $j < 3; $j++) {
+                    if (!in_array($arrayModificar[$i][$j], $arrayCompleto)) {
+                        $candidatosCuadro[$contadorCandidatosCuadro] = $arrayModificar[$i][$j];
+                        $contadorCandidatosCuadro += 1;
+                    }
+                }
+            }
+
+            break;
+
+        default:
+            break;
+    }
+
+    // Declaramos para tenerlo preparado para crear el array definitivo
+    // de números candidatos a esa celda
+    $candidatosFinal = array();
+    $contadorCandidatos = 0;
+
+    for ($i = 0; $i < count($valoresCandidatosFila); $i++) {
+        if (in_array($valoresCandidatosFila[$i], $valoresCandidatosColumna)) {
+            $candidatosFinal[$contadorCandidatos] = $valoresCandidatosFila[$i];
+            $contadorCandidatos += 1;
+        }
+    }
+
+    $valoresFinalisimos = array();
+    $contadorCandidatosFinal = 0;
+
+    for ($i = 0; $i < count($candidatosFinal); $i++) {
+        if (in_array($candidatosFinal[$i], $valoresCandidatosCuadro)) {
+            $valoresFinalisimos[$contadorCandidatosFinal] = $candidatosFinal[$i];
+            $contadorCandidatosFinal += 1;
+        }
+    }
+    print_r($valoresFinalisimos);
 }
