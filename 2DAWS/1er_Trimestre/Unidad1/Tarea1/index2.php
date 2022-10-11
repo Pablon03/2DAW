@@ -109,9 +109,10 @@
 
         // Es decir, si no ha ocurrido un error en la comprobación entrará en el IF
         if (!$comprobacion) {
-            comprobarCandidatos($miArray, $_POST['filaNumero'] - 1, $_POST['columnaNumero'] - 1);
+            $arrayCandidatos = comprobarCandidatos($miArray, $_POST['filaNumero'] - 1, $_POST['columnaNumero'] - 1);
             crearSudokuJuego($miArrayInicial, $miArray, "nivelFacil");
-        } else{}
+        } else {
+        }
 
         $arrayCodificado = base64_encode(serialize($miArray));
         $arrayCodificadoInicial = base64_encode(serialize($miArrayInicial));
@@ -140,6 +141,17 @@
             <input type="submit" name="botonSubmit" value="Eliminar" />
             <br>
             <input type="submit" name="botonSubmit" value="Candidatos" />
+            <?php
+            // Este IF entra si en el array hay datps
+            if (isset($arrayCandidatos)) {
+                for ($i = 0; $i < count($arrayCandidatos); $i++) {
+                    // Si $arrayCandidatos[$i] está lleno lo imprime
+                    if (isset($arrayCandidatos[$i])) {
+                        print '<a>' . $arrayCandidatos[$i] . ', </a>';
+                    }
+                }
+            }
+            ?>
         </form>
     </div>
 
