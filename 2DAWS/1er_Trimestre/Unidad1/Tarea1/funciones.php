@@ -287,68 +287,215 @@ function comprobarCandidatos($arrayModificar, $fila, $columna)
     // Me da los valores que faltan en esa columna
     $valoresCandidatosColumna = array_diff($arrayCompleto, $datosColumna);
 
-    $candidatosCuadro = array();
-    $contadorCandidatosCuadro = 0;
-    switch ($fila) {
-            // Esto es para el primer cuadro
-        case 0 || 1 || 2:
-            for ($i = 0; $i < 3; $i++) {
-                for ($j = 0; $j < 3; $j++) {
-                    if (in_array($arrayModificar[$i][$j], $arrayCompleto)) {
-                        $candidatosCuadro[$contadorCandidatosCuadro] = $arrayModificar[$i][$j];
-                        $contadorCandidatosCuadro += 1;
-                    }
-                }
-            }
-            $valoresCandidatosCuadro = array_diff($arrayCompleto, $candidatosCuadro);
-            break;
-        case 3 || 4 || 5:
-            for ($i = 3; $i < 6; $i++) {
-                for ($j = 0; $j < 3; $j++) {
-                    if (!in_array($arrayModificar[$i][$j], $arrayCompleto)) {
-                        $candidatosCuadro[$contadorCandidatosCuadro] = $arrayModificar[$i][$j];
-                        $contadorCandidatosCuadro += 1;
-                    }
-                }
-            }
-            $valoresCandidatosCuadro = array_diff($arrayCompleto, $candidatosCuadro);
-            break;
-        case 6 || 7 || 8:
-            for ($i = 6; $i < 9; $i++) {
-                for ($j = 0; $j < 3; $j++) {
-                    if (!in_array($arrayModificar[$i][$j], $arrayCompleto)) {
-                        $candidatosCuadro[$contadorCandidatosCuadro] = $arrayModificar[$i][$j];
-                        $contadorCandidatosCuadro += 1;
-                    }
-                }
-            }
+    $filaInicial = filaInicial($fila, $columna);
+    $filaFinal = filaFinal($fila, $columna);
+    $columnaInicial = columnaInicial($fila, $columna);
+    $columnaFinal = columnaFinal($fila, $columna);
+    $valoresCuadro = array();
+    $contadorCuadro = 0;
 
-            break;
 
+    for ($i = $filaInicial; $i <= $filaFinal; $i++) {
+        for ($j = $columnaInicial; $j <= $columnaFinal; $j++) {
+            if (isset($arrayModificar[$i][$j])) {
+                $valoresCuadro[$contadorCuadro] = $arrayModificar[$i][$j];
+                $contadorCuadro += 1;
+            }
+        }
+    }
+
+    // Coge los valores que falta en el cuadro seleccionada
+    $candidatosCuadro = array_diff($arrayCompleto, $valoresCuadro);
+
+    // Array con la unión de los números que coinciden en los 3 arrays, es decir, si coinciden en los tres
+    // son los Candidatos a colocarse en dicha celda
+    $result_array = array_intersect_assoc($valoresCandidatosFila, $valoresCandidatosColumna, $candidatosCuadro);
+    return $result_array;
+    //print_r($result_array);
+}
+
+/**
+ * Recibe los datos de fila y columna y devuelve el índice del cuadro en el que se encuentra
+ */
+function calcularCuadro($fila, $columna)
+{
+
+    if (($fila == 0 || $fila == 1 || $fila == 2) && ($columna == 0 || $columna == 1 || $columna == 2)) {
+        return 0;
+    } elseif (($fila == 0 || $fila == 1 || $fila == 2) && ($columna == 3 || $columna == 4 || $columna == 5)) {
+        return 1;
+    } elseif (($fila == 0 || $fila == 1 || $fila == 2) && ($columna == 6 || $columna == 7 || $columna == 8)) {
+        return 2;
+    } elseif (($fila == 3 || $fila == 4 || $fila == 5) && ($columna == 0 || $columna == 1 || $columna == 2)) {
+        return 3;
+    } elseif (($fila == 3 || $fila == 4 || $fila == 5) && ($columna == 3 || $columna == 4 || $columna == 5)) {
+        return 4;
+    } elseif (($fila == 3 || $fila == 4 || $fila == 5) && ($columna == 6 || $columna == 7 || $columna == 8)) {
+        return 5;
+    } elseif (($fila == 6 || $fila == 7 || $fila == 8) && ($columna == 0 || $columna == 1 || $columna == 2)) {
+        return 6;
+    } elseif (($fila == 6 || $fila == 7 || $fila == 8) && ($columna == 3 || $columna == 4 || $columna == 5)) {
+        return 7;
+    } elseif (($fila == 6 || $fila == 7 || $fila == 8) && ($columna == 6 || $columna == 7 || $columna == 8)) {
+        return 8;
+    }
+}
+
+/**
+ * Recibe la fila y columna y devuelve la fila inicial del cuadro al que pertenecen.
+ */
+function filaInicial($fila, $columna)
+{
+    $indiceCuadro = calcularCuadro($fila, $columna);
+
+    switch ($indiceCuadro) {
+        case 0;
+            return 0;
+            break;
+        case 1;
+            return 0;
+            break;
+        case 2;
+            return 0;
+            break;
+        case 3:
+            return 3;
+            break;
+        case 4:
+            return 3;
+            break;
+        case 5:
+            return 3;
+            break;
+        case 6:
+            return 6;
+            break;
+        case 7:
+            return 6;
+            break;
+        case 8:
+            return 6;
+            break;
         default:
             break;
     }
+}
 
-    // Declaramos para tenerlo preparado para crear el array definitivo
-    // de números candidatos a esa celda
-    $candidatosFinal = array();
-    $contadorCandidatos = 0;
+/**
+ * Recibe la fila y columna y devuelve la fila final del cuadro al que pertenecen.
+ */
+function filaFinal($fila, $columna)
+{
+    $indiceCuadro = calcularCuadro($fila, $columna);
 
-    for ($i = 0; $i < count($valoresCandidatosFila); $i++) {
-        if (in_array($valoresCandidatosFila[$i], $valoresCandidatosColumna)) {
-            $candidatosFinal[$contadorCandidatos] = $valoresCandidatosFila[$i];
-            $contadorCandidatos += 1;
-        }
+    switch ($indiceCuadro) {
+        case 0:
+            return 2;
+            break;
+        case 1:
+            return 2;
+            break;
+        case 2:
+            return 2;
+            break;
+        case 3:
+            return 5;
+            break;
+        case 4:
+            return 5;
+            break;
+        case 5:
+            return 5;
+            break;
+        case 6:
+            return 8;
+            break;
+        case 7:
+            return 8;
+            break;
+        case 8:
+            return 8;
+            break;
+        default:
+            break;
     }
+}
 
-    $valoresFinalisimos = array();
-    $contadorCandidatosFinal = 0;
+/**
+ * Recibe la fila y columna y devuelve la columna inicial del cuadro al que pertenecen.
+ */
+function columnaInicial($fila, $columna)
+{
+    $indiceCuadro = calcularCuadro($fila, $columna);
 
-    for ($i = 0; $i < count($candidatosFinal); $i++) {
-        if (in_array($candidatosFinal[$i], $valoresCandidatosCuadro)) {
-            $valoresFinalisimos[$contadorCandidatosFinal] = $candidatosFinal[$i];
-            $contadorCandidatosFinal += 1;
-        }
+    switch ($indiceCuadro) {
+        case 0;
+            return 0;
+            break;
+        case 1;
+            return 3;
+            break;
+        case 2;
+            return 6;
+            break;
+        case 3:
+            return 0;
+            break;
+        case 4:
+            return 3;
+            break;
+        case 5:
+            return 6;
+            break;
+        case 6:
+            return 0;
+            break;
+        case 7:
+            return 3;
+            break;
+        case 8:
+            return 6;
+            break;
+        default:
+            break;
     }
-    print_r($valoresFinalisimos);
+}
+/**
+ * Recibe la fila y columna y devuelve la columna final del cuadro al que pertenecen.
+ */
+function columnaFinal($fila, $columna)
+{
+    $indiceCuadro = calcularCuadro($fila, $columna);
+
+    switch ($indiceCuadro) {
+        case 0:
+            return 2;
+            break;
+        case 1:
+            return 5;
+            break;
+        case 2:
+            return 8;
+            break;
+        case 3:
+            return 2;
+            break;
+        case 4:
+            return 5;
+            break;
+        case 5:
+            return 8;
+            break;
+        case 6:
+            return 2;
+            break;
+        case 7:
+            return 5;
+            break;
+        case 8:
+            return 8;
+            break;
+        default:
+            break;
+    }
 }
