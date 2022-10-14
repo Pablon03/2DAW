@@ -109,9 +109,24 @@
 
         // Es decir, si no ha ocurrido un error en la comprobación entrará en el IF
         if (!$comprobacion) {
-            $arrayCandidatos = comprobarCandidatos($miArray, $_POST['filaNumero'] - 1, $_POST['columnaNumero'] - 1);
-            crearSudokuJuego($miArrayInicial, $miArray, "nivelFacil");
+            if (!empty($_POST['dificultad']) && $_POST['dificultad'] == "arrayFacil") {
+                $arrayCandidatos = comprobarCandidatos($miArray, $_POST['filaNumero'] - 1, $_POST['columnaNumero'] - 1);
+                crearSudokuJuego($miArrayInicial, $miArray, "nivelFacil");
+            } elseif (!empty($_POST['dificultad']) && $_POST['dificultad'] == "arrayMedio") {
+                $arrayCandidatos = comprobarCandidatos($miArray, $_POST['filaNumero'] - 1, $_POST['columnaNumero'] - 1);
+                crearSudokuJuego($miArrayInicial, $miArray, "nivelMedio");
+            } else {
+                $arrayCandidatos = comprobarCandidatos($miArray, $_POST['filaNumero'] - 1, $_POST['columnaNumero'] - 1);
+                crearSudokuJuego($miArrayInicial, $miArray, "nivelDificil");
+            }
         } else {
+            if (!empty($_POST['dificultad']) && $_POST['dificultad'] == "arrayFacil") {
+                crearSudokuJuego($miArrayInicial, $miArray, "nivelFacil");
+            } elseif (!empty($_POST['dificultad']) && $_POST['dificultad'] == "arrayMedio") {
+                crearSudokuJuego($miArrayInicial, $miArray, "nivelMedio");
+            } else {
+                crearSudokuJuego($miArrayInicial, $miArray, "nivelDificil");
+            }
         }
 
         $arrayCodificado = base64_encode(serialize($miArray));
