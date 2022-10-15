@@ -8,6 +8,36 @@
 </head>
 
 <body>
+<div class="main">
+        <div class="top">
+            <div class="logo">
+                <img id="imagenBanner" src="https://www.veryicon.com/download/png/miscellaneous/learning-software/sudoku-2?s=256" alt="Logo Juego Sudooku">
+            </div>
+            <div class="list">
+                <ul style="list-style: none;">
+                    <li>Página Ejemplo 1</li>
+                    <li>Página Ejemplo 2</li>
+                    <li>Página Ejemplo 3</li>
+                    <li>Página Ejemplo 4</li>
+                </ul>
+
+            </div>
+            <br style="clear:both;"/>
+        </div>
+        <div class="col1"></div>
+        <div class="col2"></div>
+        <div class="down"></div>
+    </div>
+
+    <div class="barraLat">
+        <section>Mov 1</section>
+        <section>Mov 2</section>
+        <section>Mov 3</section>
+        <section>Mov 4</section>
+        <section>Mov 5</section>
+    </div>
+
+    <div class="barraDer">
 
     <?php
     require './funciones.php';
@@ -157,9 +187,9 @@
             <br>
             <input type="submit" name="botonSubmit" value="Candidatos" />
             <?php
-            // Este IF entra si en el array hay datps
+            // Este IF entra si en el array hay datos
             if (isset($arrayCandidatos)) {
-                for ($i = 0; $i < count($arrayCandidatos); $i++) {
+                for ($i = 0; $i < 10; $i++) {
                     // Si $arrayCandidatos[$i] está lleno lo imprime
                     if (isset($arrayCandidatos[$i])) {
                         print '<a>' . $arrayCandidatos[$i] . ', </a>';
@@ -169,8 +199,7 @@
             ?>
         </form>
     </div>
-
-
+    </div>
 </body>
 
 </html>

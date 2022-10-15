@@ -8,6 +8,12 @@
     font-weight: bold;
 }
 
+.formulario{
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
 table.tablaSudoku,
 thead {
     text-align: center;
@@ -65,6 +71,7 @@ td {
     margin: 0;
     padding: 0;
     width: 100%;
+    margin-bottom: 50px;
 }
 
 body{
@@ -88,4 +95,14 @@ img#imagenBanner{
 .list ul li{
     display: inline;
     padding: 0 5px 0 5px;
+}
+
+.barraLat{
+    float: left;
+    width: 50px;
+    height: 100%;
+    margin: 150px 20px;
+    background-color: #f3f3f3;
+    border: 15px solid black;
+    padding: 15px;
 }

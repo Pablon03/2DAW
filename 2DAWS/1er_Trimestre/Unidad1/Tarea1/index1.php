@@ -29,6 +29,16 @@
         <div class="col2"></div>
         <div class="down"></div>
     </div>
+
+    <div class="barraLat">
+        <section>Mov 1</section>
+        <section>Mov 2</section>
+        <section>Mov 3</section>
+        <section>Mov 4</section>
+        <section>Mov 5</section>
+    </div>
+
+    <div class="barraDer">
     <div class="tablaSudokus">
 
         <!-- Creación de las tres tablas -->
@@ -53,6 +63,8 @@
             <input type="submit" name="enviar" value="Elegir" />
         </form>
     </div>
+    </div>
+
 </body>
 
 </html>
