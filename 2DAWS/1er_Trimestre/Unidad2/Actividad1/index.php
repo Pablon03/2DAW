@@ -39,6 +39,21 @@
         // Este código se ejecuta si la conexión con bbdd ha sido buena
         // 1.- Recogida y gestión de datos del POST
 
+        if (isset($_POST) && !empty($_POST)) {
+
+            if(isset($_POST['delete'])){
+                // Gestionamos el eliminar
+                $clave = array_keys($_POST['delete']);
+                $clave = $clave[0];
+
+            } else if(isset($_POST['add_button'])){
+    
+            } else if(isset($_POST['Actualizar'])){
+    
+            }
+        }
+
+
         // 2.- Generacion e impresión del resultado
 
         $resultados = $conexion->query('SELECT * FROM department');
@@ -52,7 +67,7 @@
                 </div>
                 <div class="registroContainer">
                     <?php while ($departamento = $resultados->fetch_array()) { ?>
-                        <input type="submit" value="x" name="delete_<?php echo $departamento['dept_no']; ?>"><input type="text" value="<?php echo $departamento['dept_name']; ?>" name="name_<?php echo $departamento['dept_no']; ?>"><br>
+                        <input type="submit" value="x" name="delete[<?php echo $departamento['dept_no']; ?>]"><input type="text" value="<?php echo $departamento['dept_name']; ?>" name="name[<?php echo $departamento['dept_no']; ?>]"><br><br>
                     <?php
                     }
                     ?>
