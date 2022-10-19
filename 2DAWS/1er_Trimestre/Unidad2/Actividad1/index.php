@@ -43,6 +43,7 @@
 
             if(isset($_POST['delete'])){
                 // Gestionamos el eliminar
+                // Sacará la clave del array de delete que le hemos mandado
                 $clave = array_keys($_POST['delete']);
                 $clave = $clave[0];
 
