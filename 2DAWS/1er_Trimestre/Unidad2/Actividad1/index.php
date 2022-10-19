@@ -36,7 +36,16 @@ if ($error != null) {
     exit();
 } else {
 
-}
+    // Este código se ejecuta si la conexión con bbdd ha sido buena
+    // 1.- Recogida y gestión de datos del POST
+
+    // 2.- Generacion e impresión del resultado
+
+    $resultados = $conexion->query('SELECT * FROM department');
+    while ($departamento = $resultados->fetch_array()) {
+        
+    }
+
 ?>
     <div class="mainContainer">
         <h1>Departamentos</h1>
@@ -56,6 +65,7 @@ if ($error != null) {
         </form>
     </div>
     <?php
+}
     $conexion->close();
     ?>
 </body>
