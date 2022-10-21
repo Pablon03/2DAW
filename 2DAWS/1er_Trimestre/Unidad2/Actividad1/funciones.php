@@ -24,7 +24,16 @@ function obtenerUltimaKey($conexion)
     $letraClave = $arreglo[1];
     $numeroClave = $arreglo[2];
     $numeroClave = $numeroClave + 1; // Sumamos una clave más
-    $numeroClave = "00" . $numeroClave;
+
+    if ($numeroClave < 10) {
+        $numeroClave = "0" . $numeroClave;
+        echo $numeroClave;
+    } elseif ($numeroClave >= 10){
+        $numeroClave = "0" . $numeroClave;
+    } elseif ($numeroClave >=100 ) {
+        $numeroClave;
+    }
+    
 
     return $letraClave . $numeroClave;
 }
@@ -32,7 +41,6 @@ function obtenerUltimaKey($conexion)
 
 function meterNuevosDatos($conexion, $nuevaKey)
 {
-    echo $nuevaKey;
     $nuevoNombre = $_POST['new_department_name'];
 
     // Creamos la query que vamos a meter, con los ? porque irán las variables
