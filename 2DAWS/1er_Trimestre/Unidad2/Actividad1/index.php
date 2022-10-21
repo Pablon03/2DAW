@@ -65,7 +65,7 @@
                 //Vamos a acceder al POST donde esté el nombre a añadir
                 $nuevoNombre = $_POST['new_department_name'];
                 // $compro = $conexion->query("INSERT INTO department (dept_name) VALUES ('.$nuevoNombre.')");
-                require_once './funciones1.php';
+                require_once './funciones.php';
                 sumarKey($conexion);
             } elseif (isset($_POST['Actualizar'])){
                 // TODO
