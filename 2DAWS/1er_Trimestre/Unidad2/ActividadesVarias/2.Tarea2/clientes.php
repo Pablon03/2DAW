@@ -32,14 +32,13 @@
         // Si no se muestra el botón de reiniciar
 
         } elseif (!empty($_POST['submit'])) {
-            //$imagePath = $_FILES['image']['full_path'];
-            //$imgContent = addslashes(file_get_contents($image));
 
-            $fileName = $_FILES['image']['name'];
-            $image = $_FILES['image']['tmp_name'];
-            //$imgContent = addslashes(file_get_contents($image));
-            $folder = "./image/" . $fileName;
 
+            $fileName = $_FILES['image']['name']; //Nombre imagen
+            $image = $_FILES['image']['tmp_name']; //TimeStamp Archivo
+            $folder = "./image/" . $fileName; //Destino de la imagen
+
+            // Hacemos update del proceso
             $insert = $conexion->query("UPDATE clientes SET imagenCliente = '$fileName' WHERE  idCliente = 10001");
     
             move_uploaded_file($image, $folder);
