@@ -24,3 +24,30 @@ body{
 .imagesClientes{
     max-width: 120px;
 }
+
+.editClient{
+    width: 1140px;
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.topLeft, .topCenter, .topRight{
+    width: 33%;
+    display: flex;
+    justify-content: center;
+}   
+
+.top{
+    padding-top: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+form{
+    width: 100%;
+}
