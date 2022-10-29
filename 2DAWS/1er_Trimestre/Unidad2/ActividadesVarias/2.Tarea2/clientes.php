@@ -6,7 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./styles.css?1.3">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@1,800&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -46,8 +49,8 @@
             $tmp = $_FILES['image']['tmp_name'];
             $tmp = substr($tmp, 13);
             $tmp = trim($tmp, '.tmp');
-            $tmp = "p".$tmp;
-            
+            $tmp = "p" . $tmp;
+
             $newFilename = "imagen[$idCliente][$tmp]"; // Nuevo nombre
             $newName = $newFilename . ".jpg"; // Ponemos la extensión
             $image = $_FILES['image']['tmp_name']; //TimeStamp Archivo
@@ -67,64 +70,69 @@
             // Si se pulsa SAVE, nos quedaremos en esta página, no nos salimos si no se le da para atrás
 
             echo "<div class='editClient'>";
-                $phpSelf = $_SERVER['PHP_SELF'];
-                echo '<form action="'.$phpSelf.'?idCliente=10001" method="post" enctype="multipart/form-data">';
-                echo "<div class='top'>";
-                    echo "<div class='topLeft'>";
-                        echo "<a href='clientes.php' class='boton'>Back</a>";
-                    echo "</div>";
-                    echo "<div class='topCenter'>";
-                    echo "<span class='editProfile'>edit profile</span>";
-                    echo "</div>";
-                    echo "<div class='topRight'>";
-                        echo '<input type="submit" name="save" value="Save" />';
-                    echo "</div>";
-                echo "</div>";
-                echo "</form>";
-            echo "</div>";
+            $phpSelf = $_SERVER['PHP_SELF'];
+            echo '<form action="' . $phpSelf . '?idCliente=10001" method="post" enctype="multipart/form-data">';
+    ?>
+            <div class='top'>
+                <div class='topLeft'>
+                    <a href='clientes.php' class='boton'>Back</a>
+                </div>
+                <div class='topCenter'>
+                    <span class='editProfile'>Edit profile</span>
+                </div>
+                <div class='topRight'>
+                    <input type="submit" name="save" value="Save" />
+                </div>
+            </div>
 
+            <div class="content">
+                
+            </div>
+            </form>
+            </div>
+        <?php
         } elseif (!empty($_POST['newClient'])) {
             // CREAR LA PÁGINA PARA CREAR UN NUEVO CLIENTE
 
         } else {
-            ?>
+        ?>
             <h1>Bienvenido al panel de administración de clientes</h1>
             <form action="<?php $_SERVER['PHP_SELF'] ?>?idCliente=10001" method="post" enctype="multipart/form-data">
                 <input type="file" name="image" value="image" />
                 <input type="submit" name="submit" value="UPLOAD" />
             </form>
-        <?php
-        
-        // Seleccionamos el array para recorrerlo
-        $query = "SELECT * FROM clientes ";
-        $result = mysqli_query($conexion, $query);
-            print_r($_GET);
-        ?>
-        <table>
-            <tbody>
+            <?php
 
-        <?php
-        while ($data = mysqli_fetch_assoc($result)) {
-        ?>
-        <form action="<?php $_SERVER['PHP_SELF'] ?>?idCliente=<?php $data['idCliente']; ?>">
-            <tr>
-                <td><img src="./image/<?php echo $data['imagenCliente']; ?>" class="imagesClientes"></td>
-                <td><span><?php echo $data['nombreCliente'] ?></span></td>
-                <td><span>@<?php echo $data['instagramCliente'] ?></span></td>
-                <td><input type="submit" value="Editar Perfil" name="edit[<?php echo $data['idCliente']; ?>]"></td>
-            </tr>
-        </form>
-    <?php
-        }
-        echo "</table>";
-        echo "</tbody>";
-    ?>
-        <!-- CREAR FORMULARIO CON BOTÓN PARA AÑADIR NUEVO CLIENTE -->
-    <?php
+            // Seleccionamos el array para recorrerlo
+            $query = "SELECT * FROM clientes ";
+            $result = mysqli_query($conexion, $query);
+            print_r($_GET);
+            ?>
+            <table>
+                <tbody>
+
+                    <?php
+                    while ($data = mysqli_fetch_assoc($result)) {
+                    ?>
+                        <form action="<?php $_SERVER['PHP_SELF'] ?>?idCliente=<?php $data['idCliente']; ?>">
+                            <tr>
+                                <td><img src="./image/<?php echo $data['imagenCliente']; ?>" class="imagesClientes"></td>
+                                <td><span><?php echo $data['nombreCliente'] ?></span></td>
+                                <td><span>@<?php echo $data['instagramCliente'] ?></span></td>
+                                <td><input type="submit" value="Editar Perfil" name="edit[<?php echo $data['idCliente']; ?>]"></td>
+                            </tr>
+                        </form>
+                    <?php
+                    }
+                    echo "</table>";
+                    echo "</tbody>";
+                    ?>
+                    <!-- CREAR FORMULARIO CON BOTÓN PARA AÑADIR NUEVO CLIENTE -->
+            <?php
         }
     }
-    $conexion -> close();
-    ?>
+    $conexion->close();
+            ?>
 
 </body>
 

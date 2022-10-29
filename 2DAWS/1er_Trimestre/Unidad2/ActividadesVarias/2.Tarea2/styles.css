@@ -32,6 +32,7 @@ body{
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    border-radius: 6px;
 }
 
 .topLeft, .topCenter, .topRight{
@@ -46,8 +47,18 @@ body{
     align-items: center;
     justify-content: center;
     align-content: center;
+    background-color: #f3f3f3;
 }
 
 form{
     width: 100%;
+}
+
+.editProfile{
+    font-weight: 500;
+    color: #1d1d1d;
+}
+
+*{
+    font-family: 'Poppins', sans-serif;
 }
