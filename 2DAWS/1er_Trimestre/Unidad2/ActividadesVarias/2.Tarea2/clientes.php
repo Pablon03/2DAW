@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./styles.css?1.4">
+    <link rel="stylesheet" href="./styles.css?1.5">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@1,800&display=swap" rel="stylesheet">
@@ -37,41 +37,20 @@
         exit();
     } else {
 
-        if (!empty($_POST['submit'])) {
-            // Mostrar todas las casillas con su imagen, nombre, usuario y un botón
-            // a la derecha para editar 
-
-            /**
-             * Nuevo Nombre de archivo 
-             * */
-            $idCliente = $_GET['idCliente'];
-            // Cogemos el tmp y le quitamos todo, solo dejamos el nombre
-            $tmp = $_FILES['image']['tmp_name'];
-            $tmp = substr($tmp, 13);
-            $tmp = trim($tmp, '.tmp');
-            $tmp = "p" . $tmp;
-
-            $newFilename = "imagen[$idCliente][$tmp]"; // Nuevo nombre
-            $newName = $newFilename . ".jpg"; // Ponemos la extensión
-            $image = $_FILES['image']['tmp_name']; //TimeStamp Archivo
-            $folder = "./image/" . $newName; //Destino de la imagen
-
-            // Hacemos update del proceso
-            if (!$insert = $conexion->query("UPDATE clientes SET imagenCliente = '$newName' WHERE  idCliente = '$idCliente'")) {
-                echo ("Algo ha salido mal");
-            }
-
-            // Movemos el archivo subido a la carpeta que le indicamos
-            move_uploaded_file($image, $folder);
+        // Entra aquí en caso de que se le de al botón de añadir Cliente en su pestaña
+        if (isset($_POST['add_client'])) {
+            require_once './functions.php';
+            sumarKey($conexion);
         }
 
+        // Entra aquí en caso de que se haya pulsado para editar un perfil
         if (!empty($_GET['edit'])) {
-            // CREAR LA PÁGINA DE EDITAR PERFIL
-            // Si se pulsa SAVE, nos quedaremos en esta página, no nos salimos si no se le da para atrás
 
-            // Gestionamos el eliminar
+            // Cogemos el ID
             $clave = array_keys($_GET['edit']);
             $clave = $clave[0]; // Esto es el ID
+
+
 
             echo "<div class='pageEdit'>";
             echo "<div class='editClient'>";
@@ -112,15 +91,52 @@
             </form>
             </div>
             </div>
+
         <?php
 
+            // Entra un nuevo cliente
         } elseif (!empty($_POST['newClient'])) {
-            // CREAR LA PÁGINA PARA CREAR UN NUEVO CLIENTE
+            echo "<div class='pageNewClient'>";
+            echo "<div class='newClient'>";
+            $phpSelf = $_SERVER['PHP_SELF'];
+            echo '<form action="' . $phpSelf . '" method="post" enctype="multipart/form-data">';
+        ?>
+            <div class='top'>
+                <div class='topLeft'>
+                    <a href='clientes.php' class='boton'>Back</a>
+                </div>
+                <div class='topCenter'>
+                    <span class='newProfile'>New profile</span>
+                </div>
+                <div class='topRight'>
+                    <input type="submit" name="add_client" value="Add Client" />
+                </div>
+            </div>
 
+            <div class="content">
+                <!-- Poner imagen por defecto en caso de que no tenga -->
+                <img src="./image/defaultUserImage.jpg" class="imagesNew">
+                <br>
+                <input type="file" name="new_image_client" value="image" />
+                <br>
+                <input type="text" name="new_name_client" placeholder="Introduce tu nombre" />
+                <br>
+                <input type="text" name="new_username_client" placeholder="@username" />
+                <br>
+            </div>
+            </form>
+            </div>
+            </div>
+        <?php
         } else {
+            // Si se ha pulsado para cambiar la foto, entrará aquí
             if (!empty($_POST['submit'])) {
-                // Mostrar todas las casillas con su imagen, nombre, usuario y un botón
-                // a la derecha para editar 
+
+                // Gestionamos el eliminar
+                $clave = $_GET['idCliente'];
+                require_once './functions.php';
+                // Borra la imagen Antigua para poner la nueva
+                borrarImagenAntigua($conexion, $clave);
 
                 /**
                  * Nuevo Nombre de archivo 
@@ -174,6 +190,9 @@
                     echo "</tbody>";
                     ?>
                     <!-- CREAR FORMULARIO CON BOTÓN PARA AÑADIR NUEVO CLIENTE -->
+                    <form class="newClientForm" action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+                        <input type="submit" name="newClient" value="New Client" />
+                    </form>
             <?php
         }
     }

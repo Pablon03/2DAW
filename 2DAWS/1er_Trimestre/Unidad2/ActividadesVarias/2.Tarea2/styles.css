@@ -27,7 +27,7 @@ body {
     max-width: 120px;
 }
 
-.editClient {
+.editClient, .newClient {
     width: 1140px;
     display: flex;
     align-content: center;
@@ -79,7 +79,7 @@ form {
 }
 
 
-.pageEdit {
+.pageEdit, .pageNewClient {
     background-image: url(./image/background.jpeg);
     background-repeat: no-repeat;
     background-size: 100%;
@@ -89,7 +89,7 @@ form {
     justify-content: center;
 }
 
-.imagesEdit{
+.imagesEdit, .imagesNew{
     margin: 55px auto;
     width: 200px;
     border-radius: 50px;
@@ -101,4 +101,11 @@ form {
     align-items: center;
     align-content: center;
     flex-direction: column;
+}
+
+.newClientForm{
+    width: 450px;
+    display: flex;
+    justify-content: center;
+    padding: 25px;
 }
