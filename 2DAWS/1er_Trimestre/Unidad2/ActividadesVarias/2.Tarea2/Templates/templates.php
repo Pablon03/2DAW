@@ -1,4 +1,6 @@
 <?php
+
+// Subir archivos y moverlos
 if (!empty($_POST['submit'])) {
             // Mostrar todas las casillas con su imagen, nombre, usuario y un botón
             // a la derecha para editar 
@@ -26,3 +28,7 @@ if (!empty($_POST['submit'])) {
             // Movemos el archivo subido a la carpeta que le indicamos
             move_uploaded_file($image, $folder);
         }
+
+
+
+        
