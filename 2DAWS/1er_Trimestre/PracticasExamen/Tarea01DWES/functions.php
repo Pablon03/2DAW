@@ -82,7 +82,7 @@ function mostrarTablaAltas($conexion) {
 
     echo "<table>";
         while ($data = $query->fetch_array()) {
-            echo "<tr>";
+                echo "<tr>";
                 echo "<td><span>'".$data['imagenPersona']."'";
                 echo "<td><span>'".$data['nombrePersona']."'";
             echo "</tr>";

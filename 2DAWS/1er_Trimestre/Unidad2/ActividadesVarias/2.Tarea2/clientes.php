@@ -155,7 +155,7 @@
 
                 // Hacemos update del proceso
                 if (!$insert = $conexion->query("UPDATE clientes SET imagenCliente = '$newName' WHERE  idCliente = '$idCliente'")) {
-                    echo ("Algo ha salido mal");
+                    echo "Algo ha salido mal";
                 }
 
                 // Movemos el archivo subido a la carpeta que le indicamos
@@ -171,8 +171,6 @@
             $result = mysqli_query($conexion, $query);
             ?>
             <table>
-                <tbody>
-
                     <?php
                     while ($data = mysqli_fetch_assoc($result)) {
                     ?>
@@ -186,7 +184,6 @@
                         </form>
                     <?php
                     }
-                    echo "</table>";
                     echo "</tbody>";
                     ?>
                     <!-- CREAR FORMULARIO CON BOTÓN PARA AÑADIR NUEVO CLIENTE -->
