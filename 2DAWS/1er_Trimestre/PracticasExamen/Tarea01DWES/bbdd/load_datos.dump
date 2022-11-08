@@ -1,0 +1,2 @@
+INSERT INTO `datos` VALUES
+(10001,'','Pablo Nicolás');
