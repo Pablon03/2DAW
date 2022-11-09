@@ -45,7 +45,6 @@
 
         // Entra aquí en caso de que se haya pulsado para editar un perfil
         if (!empty($_GET['edit'])) {
-
             // Cogemos el ID
             $clave = array_keys($_GET['edit']);
             $clave = $clave[0]; // Esto es el ID
