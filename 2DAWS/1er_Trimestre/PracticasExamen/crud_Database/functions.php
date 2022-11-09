@@ -1,16 +1,18 @@
 <?php
-function verPaises($conexion){
 
-    $query = $conexion->query("SELECT * FROM country");
-    echo "<table>";
-        while ($data = $query->fetch_array()) {
-            echo "<tr>";
-                echo "<td><span>'".$data['Code']."'";
-                echo "<td><span>'".$data['Name']."'";
-                echo "<td><span>'".$data['Continent']."'";
-                echo "</tr>";
-        }
-    echo "</table>";
+function obtenerClave($conexion){
+
+
+    $claves = $conexion->query('SELECT ID FROM city ORDER BY ID DESC');
+
+    $clave = $claves->fetch_array();
+
+    $ultimaClave = $clave[0];
+    $ultimaClave = $ultimaClave+1;
+
+    if ($ultimaClave % 2 === 0 && $ultimaClave % 5 === 0) {
+        $ultimaClave = $ultimaClave . "0";
+    }
+
+    return $ultimaClave;
 }
-
-

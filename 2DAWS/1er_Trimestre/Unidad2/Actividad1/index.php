@@ -87,7 +87,8 @@
                 </div>
                 <div class="registroContainer">
                     <?php while ($departamento = $resultados->fetch_array()) { ?>
-                        <input type="submit" value="x" name="delete[<?php echo $departamento['dept_no']; ?>]"><input type="text" value="<?php echo $departamento['dept_name']; ?>" name="name[<?php echo $departamento['dept_no']; ?>]"><br><br>
+                        <input type="submit" value="x" name="delete[<?php echo $departamento['dept_no']; ?>]">
+                        <input type="text" value="<?php echo $departamento['dept_name']; ?>" name="name[<?php echo $departamento['dept_no']; ?>]"><br><br>
                     <?php
                     }
                     ?>
