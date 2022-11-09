@@ -15,7 +15,6 @@
 
         $tableroJuego = meterRespuesta($tableroJuego);
         mostrarTablero($tableroJuego);
-        comprobacionGanador($tableroJuego);
 
         // Sumamos el turno
         $turno = $_POST['turno'];
