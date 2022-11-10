@@ -1,0 +1,2 @@
+INSERT INTO `clientes` VALUES
+(10001,'','Pablo Nicolás','Pablo');

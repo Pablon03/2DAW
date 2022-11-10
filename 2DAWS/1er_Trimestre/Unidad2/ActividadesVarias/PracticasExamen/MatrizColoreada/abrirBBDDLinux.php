@@ -9,13 +9,11 @@
 <body>
 
     <?php
-    print_r($_POST);
-    echo "gola";
         if (isset($_POST['crear'])) {
-            if(exec('cd ./bbdd && /opt/lampp/bin/mysql -u root < world.sql')) {
+            if(exec('cd ./bbdd && /opt/lampp/bin/mysql -u root < clientes.sql')) {
                 echo "Creado bien";
             } else {
-                echo "NO se ha creado";
+                echo "No se ha creado";
             }
         }
     ?>
