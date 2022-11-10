@@ -10,7 +10,11 @@
 
     <?php
         if (isset($_POST['crear'])) {
-            exec('./bbdd && /opt/lamp/bin/mysql -u root < world.sql');
+            if(exec('./bbdd && /opt/lamp/bin/mysql -u root < world.sql')){
+                echo "Creado bien";
+            } else {
+                echo "NO se ha creado";
+            }
         }
     ?>
     <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
