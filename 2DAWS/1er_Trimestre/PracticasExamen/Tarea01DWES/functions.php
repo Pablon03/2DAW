@@ -24,9 +24,18 @@ function insertarDatos($conexion, $nuevaKey, $nuevoNombre)
 
 function meterImagen($conexion, $clave)
 {
-    print_r($_FILES['10001']);
+
+    // Cogemos aquí el array de todas las claves y ordenado de mayor a menor
+    $imagenes = $conexion->query("SELECT imagenPersona FROM datos WHERE idDatos = $clave");
+
+    // Metemos la primera fila en la variable clave
+    $imagen = $imagenes->fetch_array();
+    $imagen = $imagen[0];
+
+    $enlace = "./image/" . $imagen;
+
     // Nos quedamos con el nombre del tmp
-    $tmp = $_FILES["'$clave'"]['tmp_name'];
+    $tmp = $_FILES['perfil']['tmp_name'][$clave];
     $tmp = substr($tmp, 13);
     $tmp = trim($tmp, '.tmp');
     $tmp = "p" . $tmp;
@@ -34,14 +43,24 @@ function meterImagen($conexion, $clave)
     // Cambiamos el nombre y destino de la imagen
     $newFilename = "imagen[$clave][$tmp]"; // Nuevo nombre
     $newName = $newFilename . ".jpg"; // Ponemos la extensión
-    $image = $_FILES['image']['tmp_name']; //TimeStamp Archivo
+    $image = $_FILES['perfil']['tmp_name'][$clave]; //TimeStamp Archivo
     $folder = "./image/" . $newName; //Destino de la imagen
 
-    // Hacemos update del proceso
-    if (!$insert = $conexion->query("UPDATE clientes SET imagenCliente = '$newName' WHERE  idCliente = '$clave'")) {
-        echo "Algo ha salido mal";
+    // Metemos nuevo o hacemos update
+    if (isset($_POST['addNombre'])) {
+        if (!$insert = $conexion->query("INSERT INTO datos SET imagenPersona = '$newName' WHERE  idDatos = '$clave'")) {
+            echo "Algo ha salido mal";
+        }
+    } elseif (isset($_POST['actualizar'])) {
+        if (!$insert = $conexion->query("UPDATE datos SET imagenPersona = '$newName' WHERE  idDatos = '$clave'")) {
+            echo "Algo ha salido mal";
+        }
     }
 
     // Movemos el archivo subido a la carpeta que le indicamos
     move_uploaded_file($image, $folder);
+
+    // Borramos la imagen antigua de la carpeta
+    unlink($enlace);
 }
+

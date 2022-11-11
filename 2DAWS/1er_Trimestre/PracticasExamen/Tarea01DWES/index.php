@@ -26,12 +26,12 @@
                 $nuevaKey = obtenerNuevaKey($conexion);
                 $nuevoNombre = $_POST['nuevoNombre'];
                 insertarDatos($conexion, $nuevaKey, $nuevoNombre);
+
             } elseif (isset($_POST['actualizar'])) {
                 // 2. Gestionamos el actualizar
                 $arrayNombres = $_POST['name'];
                 $arrayClaves = array_keys($_POST['name']);
                 $contador = 0;
-                print_r($_FILES);
 
                 foreach ($arrayNombres as $nombre) {
                     $clave = $arrayClaves[$contador];
@@ -54,15 +54,16 @@
         $datos = $conexion->query("SELECT * FROM datos");
     ?>
         <h1>Datos</h1>
-        <form method="post" action="<?php $_SERVER['PHP_SELF'] ?>">
+        <form method="post" action="<?php $_SERVER['PHP_SELF'] ?>" enctype="multipart/form-data">
             <table>
-                <?php while ($fila = mysqli_fetch_assoc($datos)) { ?>
+                <?php while ($fila = mysqli_fetch_assoc($datos)) { print_r($fila)?>
                     <tr>
                         <td>
+                            
                             <input type="submit" name="delete[<?php echo $fila['idDatos'] ?>]" value="x" />
                             <input type="text" name="name[<?php echo $fila['idDatos'] ?>]" value="<?php echo $fila['nombrePersona'] ?>" />
                             <!-- <img src="./image/<?php echo $data['imagenPersona']; ?>" class="imagenPersona"> -->
-                            
+                            <input type="file" name="perfil[<?php echo $fila['idDatos'] ?>]" value="<?php echo $data['imagenPersona']; ?>"/>
                         </td>
                     </tr>
                 <?php
@@ -75,7 +76,6 @@
                     </td>
                 </tr>
             </table>
-            <input type="file" name="perfil" value="image"/>
             <input type="submit" name="actualizar" value="Actualizar"/>
         </form>
 
