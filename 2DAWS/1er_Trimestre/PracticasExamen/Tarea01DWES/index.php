@@ -28,13 +28,25 @@
                 insertarDatos($conexion, $nuevaKey, $nuevoNombre);
             } elseif (isset($_POST['actualizar'])) {
                 // 2. Gestionamos el actualizar
+                $arrayNombres = $_POST['name'];
+                $arrayClaves = array_keys($_POST['name']);
+                $contador = 0;
+                print_r($_FILES);
+
+                foreach ($arrayNombres as $nombre) {
+                    $clave = $arrayClaves[$contador];
+                    $contador = $contador +1;
+                    require_once './functions.php';
+                    meterImagen($conexion, $clave);
+                    $conexion->query('UPDATE datos SET nombrePersona="'.$nombre.'" WHERE idDatos="'.$clave.'"');
+                }
 
             } elseif (isset($_POST['delete'])) {
                 // 3. Gestionamos el borrar
                 $clave = array_keys($_POST['delete']);
                 $clave = $clave[0];
 
-                $conexion->query("DELETE * FROM datos WHERE idDatos ='".$clave."'");
+                $conexion->query("DELETE FROM datos WHERE idDatos ='".$clave."'");
             }
         }
         // 4. Gestionamos el mostrar la lista
@@ -49,6 +61,8 @@
                         <td>
                             <input type="submit" name="delete[<?php echo $fila['idDatos'] ?>]" value="x" />
                             <input type="text" name="name[<?php echo $fila['idDatos'] ?>]" value="<?php echo $fila['nombrePersona'] ?>" />
+                            <!-- <img src="./image/<?php echo $data['imagenPersona']; ?>" class="imagenPersona"> -->
+                            
                         </td>
                     </tr>
                 <?php
@@ -61,6 +75,8 @@
                     </td>
                 </tr>
             </table>
+            <input type="file" name="perfil" value="image"/>
+            <input type="submit" name="actualizar" value="Actualizar"/>
         </form>
 
     <?php
