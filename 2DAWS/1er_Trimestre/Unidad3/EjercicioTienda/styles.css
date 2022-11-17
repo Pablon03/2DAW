@@ -1,0 +1,13 @@
+.cajaProducto{
+    background-color: skyblue;
+    margin: auto 15px;
+    padding: 15px;
+    width: 350px;
+    height:auto;
+}
+
+#boxGrande{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 15px;
+}
