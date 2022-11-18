@@ -11,3 +11,9 @@
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 15px;
 }
+
+table, tr, td {
+    border: 1px black solid;
+    border-collapse: collapse;
+    padding: 5px;
+}

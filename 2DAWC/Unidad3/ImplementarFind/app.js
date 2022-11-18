@@ -17,6 +17,7 @@ for (let j = indice + 1; j < array.length && !res; j++) {
     }
     return res;
 }
+    
 
 const elems = [3, 6, 9, 7, 7, 4, 9];
 const numero = find(elems, func_callback);
