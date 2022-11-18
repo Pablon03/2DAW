@@ -40,5 +40,4 @@ if (isset($_SESSION['login']) && !$_SESSION['login'] == true) {
     ?>
 
 </body>
-
 </html>
