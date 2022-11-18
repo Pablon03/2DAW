@@ -21,15 +21,21 @@ if (isset($_SESSION['login']) && !$_SESSION['login']) {
 
 <body>
     <?php
-    include_once('./functions.php');
-    $con = conectar();
-
-    insertHeader();
-    echo "<h1>Carrito</h1>";
-
-    ponerCesta();
-    $_SESSION['precioCompra'] = $precioTotal;
+    
+    if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) {
+        include_once('./functions.php');
+        $con = conectar();
+    
+        insertHeader();
+        echo "<h1>Carrito</h1>";
+    
+        $precioTotal = ponerCesta();
+        $_SESSION['precioCompra'] = $precioTotal;
+    } else {
+        header('location: ./productos.php');
     }
-    ?>
+
+}
+?>
 </body>
 </html>

@@ -1,23 +1,18 @@
 <?php
 
 session_start();
-if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
-    // Redireccionamos a productos.php
+// Redireccionamos a productos.php
+if (isset($_SESSION['login']) && $_SESSION['login']) {
     header('location: ./productos.php');
+    
+// Comprobamos si el inicio de sesión es correcto o no
 } else {
-    // Comprobamos si el inicio de sesión es correcto o no
-    print_r($_POST);
+
     // Si en POST hay usuario y contraseña
     if (isset($_POST['usuario']) && isset($_POST['password'])) {
         require_once './functions.php';
         $con = conectar();
-        $nombreUsuario = $_POST['usuario'];
-        $contrasenyaUsuario = $_POST['password'];
-        $query = "SELECT * FROM usuarios WHERE usuario='$nombreUsuario' AND contrasena='$contrasenyaUsuario'";
-        
-        $resultado = $con->query($query);
-        
-        $fila = $resultado->fetch_array();
+        $fila = comprobarLogIn($con);
 
         if ($fila != null) {
             // Mandamos a productos.php
@@ -37,19 +32,11 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
     <title>Document</title>
 </head>
 <body>
-    <form action="<?php $_SERVER['PHP_SELF']?>" method="POST">
-    <input type="text" name="usuario" placeholder="Usuario"/>
-    <input type="password" name="password" placeholder="Contraseña"/>
-    <input type="submit" name="acceder" value="Acceder"/>
-    </form>
-
-    <?php
-
-
-    ?>
-</body>
-</html>
 <?php
+    require_once './functions.php';
+    ponerForm();
     }
 }
 ?>
+</body>
+</html>

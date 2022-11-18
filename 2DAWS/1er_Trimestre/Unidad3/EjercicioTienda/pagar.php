@@ -22,11 +22,8 @@ if (isset($_SESSION['login']) && !$_SESSION['login'] == true) {
     <?php
     if (isset($_SESSION['precioCompra']) && !empty($_SESSION['precioCompra'])) {
         // Muestra las gracias
+        insertHeader();
     ?>
-        <div id='header'>
-            <a href='./productos.php'>Ir a ver los productos</a><br>
-            <a href='./logoff.php'>Log Out</a>
-        </div>
         <h1>Muchas Gracias</h1>
         <br>
         <h3>Ha relizado su compra de: <?php echo $_SESSION['precioCompra']; ?>€</h3>
@@ -34,6 +31,7 @@ if (isset($_SESSION['login']) && !$_SESSION['login'] == true) {
     <?php
         // Vaciamos el carrito
         unset($_SESSION['carrito']);
+        unset($_SESSION['precioCompra']);
     } else {
         //Redireccionamos a productos.php
         header('location: ./productos.php');

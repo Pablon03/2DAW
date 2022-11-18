@@ -56,6 +56,7 @@ function ponerCesta()
     echo "<td>$precioTotal €</td>";
     echo "</tr>";
     echo "</table>";
+    return $precioTotal;
 }
 
 function insertHeader()
@@ -86,6 +87,25 @@ function mostrarProductos($con)
                 <input type='submit' name='comprar[$codProducto]' value='Comprar por $precioProducto €' />
             </form>
         </div>";
-        echo "</div>";
     }
+    echo "</div>";
+}
+
+function comprobarLogin($con) {
+    $nombreUsuario = $_POST['usuario'];
+    $contrasenyaUsuario = $_POST['password'];
+    $query = "SELECT * FROM usuarios WHERE usuario='$nombreUsuario' AND contrasena='$contrasenyaUsuario'";
+    
+    $resultado = $con->query($query);
+    
+    return $resultado->fetch_array();
+}
+
+function ponerForm() {
+    $phpSelf = $_SERVER['PHP_SELF'];
+    echo "<form action='$phpSelf' method='POST'>
+    <input type='text' name='usuario' placeholder='Usuario'/>
+    <input type='password' name='password' placeholder='Contraseña'/>
+    <input type='submit' name='acceder' value='Acceder'/>
+    </form>";
 }
