@@ -4,6 +4,7 @@ session_start();
 // Redireccionamos a productos.php
 if (isset($_SESSION['login']) && $_SESSION['login']) {
     header('location: ./productos.php');
+    exit();
     
 // Comprobamos si el inicio de sesión es correcto o no
 } else {

@@ -2,7 +2,7 @@
 
 session_start();
 $_SESSION['productosCarrito'] = 0;
-if (isset($_SESSION['login']) && !$_SESSION['login']) {
+if (isset($_SESSION['login'])) {
     // Redireccionamos a productos.php
     header('location: ./login.php');
 } else {
