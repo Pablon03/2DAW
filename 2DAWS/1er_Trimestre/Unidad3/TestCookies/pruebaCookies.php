@@ -9,7 +9,6 @@ if (isset($_SESSION['hora'])) {
     $_SESSION['array'] = $arrayFechas;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
