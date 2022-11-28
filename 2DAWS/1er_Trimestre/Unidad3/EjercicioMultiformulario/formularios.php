@@ -10,10 +10,14 @@ if (!isset($_SESSION['arrayProductos'])) {
     require_once './functions.php';
     $con = conectar();
     $query = ("SELECT * FROM producto LIMIT 4");
-    $_SESSION['arrayProductos'] = $con->query($query);
+    $arrayQuery = $con->query($query);
+    $_SESSION['arrayProductos'] = $arrayQuery->fetch_all();
     $_SESSION['formulario'] = 1;
     print_r($_SESSION['arrayProductos']);
 }
+echo "<pre>";
+print_r($_SESSION['arrayProductos']);
+echo "</pre>";
 ?>
 <!DOCTYPE html>
 <html lang="en">
