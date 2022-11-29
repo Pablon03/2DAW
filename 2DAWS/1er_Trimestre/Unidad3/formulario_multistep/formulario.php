@@ -5,7 +5,7 @@
   error_reporting(E_ALL);
 
   
-  include("./templates/header.tpl.php");
+  include_once("./templates/header.tpl.php");
   
   include("./funciones.php");
   
@@ -22,7 +22,7 @@
   }elseif (isset($_POST['siguiente'])){
     //$_SESSION['formulario']['productos'][$_SESSION['formulario']['paso_actual']]['cantidad'] = $_POST['cantidad'];
     $_SESSION['formulario']['paso_actual'] = $_SESSION['formulario']['paso_actual']+1;
-    
+
   } elseif (isset($_POST['cesta'])){
     //TODO: MOSTRAR CARRITO
   }

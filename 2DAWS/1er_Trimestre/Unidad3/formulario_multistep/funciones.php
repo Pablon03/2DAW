@@ -36,11 +36,11 @@
     if (isset($formulario['paso_actual']) && $formulario['paso_actual'] == 1) { // PÁGINA UNO
       $output.='<input type="submit" name="siguiente" value="Siguiente">';
 
-    } else if (isset($formulario['paso_actual']) && $formulario['paso_actual'] == 4) { // SI ES LA PÁGINA 4
+    } elseif (isset($formulario['paso_actual']) && count($formulario['paso_actual'])) { // SI ES LA ÚLTIMA PÁGINA
       $output.='<input type="submit" name="anterior" value="Anterior">
                 <input type="submit" name="cesta" value="Comprar">';
 
-    } else if (isset($formulario['paso_actual']) && $formulario['paso_actual']  != 1 || 0) {
+    } elseif (isset($formulario['paso_actual']) && $formulario['paso_actual']  != 1 || 0) {
       $output.='<input type="submit" name="anterior" value="Anterior">
       <input type="submit" name="siguiente" value="Siguiente">';
     }
@@ -48,5 +48,3 @@
     echo $output;
   }
   
-
-?>
