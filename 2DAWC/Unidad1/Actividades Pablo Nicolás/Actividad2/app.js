@@ -31,7 +31,7 @@ function main() {
     // Con este do-while vamos a repetir cuantas veces se necesite hasta que sea False
     do {
         // Solicitamos y parseamos a tipo int
-        respuestaStr = prompt(ELEGIROPCION);
+        const respuestaStr = prompt(ELEGIROPCION);
         respuesta = parseInt(respuestaStr);
         comprobante = comprobarRespuesta(respuesta);
     } while (comprobante);
@@ -72,7 +72,7 @@ function method1(){
 
     do {
         // Solicitamos número y hacemos la comprobación
-        respuesta = prompt(SOLICITUDNUM, DEFAULTVALUE);
+        const respuesta = prompt(SOLICITUDNUM, DEFAULTVALUE);
         // En caso de que sea incorrecto devvuelve false y se solicita de nuevo por teclado
         if (isNaN(respuesta) || respuesta < 0){
             comprobar = false;
@@ -94,7 +94,7 @@ function method2(){
 
     do {
         // Solicitamos nombre y hacemos la comprobación
-        respuesta = prompt(SOLICITUDNAME, DEFAULTNAME);
+        const respuesta = prompt(SOLICITUDNAME, DEFAULTNAME);
         // En caso de que sea incorrecto devvuelve false y se solicita de nuevo por teclado
         if (respuesta === '' || respuesta === null) {
             comprobar = false;
