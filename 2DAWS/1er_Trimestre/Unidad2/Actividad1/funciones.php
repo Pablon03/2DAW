@@ -10,7 +10,7 @@ function sumarKey($conexion)
 function obtenerUltimaKey($conexion)
 {
     // Cogemos aquí el array de todas las claves y ordenado de mayor a menor
-    $claves = $conexion->query('SELECT dept_no FROM department ORDER BY dept_no DESC');
+    $claves = $conexion->query('SELECT dept_no FROM departments ORDER BY dept_no DESC');
 
     // Metemos la primaera fila en la variable clave
     $clave = $claves->fetch_array();
@@ -44,7 +44,7 @@ function meterNuevosDatos($conexion, $nuevaKey)
     $nuevoNombre = $_POST['new_department_name'];
 
     // Creamos la query que vamos a meter, con los ? porque irán las variables
-    $query = "INSERT INTO department (dept_no, dept_name)
+    $query = "INSERT INTO departments (dept_no, dept_name)
              VALUES (?, ?)";
     // Lo preparamos
     $stmt = $conexion->prepare($query);

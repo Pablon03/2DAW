@@ -47,16 +47,16 @@
         // 1.- Recogida y gestión de datos del POST
 
         if (isset($_POST) && !empty($_POST)) {
-            print_r($_POST);
+
             if (isset($_POST['delete'])){
                 // Gestionamos el eliminar
                 $clave = array_keys($_POST['delete']);
                 $clave = $clave[0];
-                echo '<br>'.$clave.'<br>';
+                // echo '<br>'.$clave.'<br>';
 
                 // Con este if vamos a eliminar y ver si nos devuelve FALSE (nos da error)
                 // y si no afecta a ninguna columna también nos dará error
-                if (!$conexion->query('DELETE FROM department WHERE dept_no="' . $clave . '"') || $conexion->affected_rows === 0) {
+                if (!$conexion->query('DELETE FROM departments WHERE dept_no="' . $clave . '"') || $conexion->affected_rows === 0) {
                     $mensajeErrorCliente == "Ha hecho algo mal";
                 }
 
@@ -68,16 +68,37 @@
                 require_once './funciones.php';
                 sumarKey($conexion);
                 
-            } elseif (isset($_POST['Actualizar'])){
-                // TODO
 
+            } elseif (isset($_POST['Actualizar'])){
+                // Cogemos los valores metidos del post y ordenamos para que tengan el mismo orden,
+                // también cogemos los que teniamos y por último los comparamos.
+
+                $nombresPost = array_values($_POST['name']);
+                arsort($nombresPost);
+
+                $nombres = $conexion->query('SELECT * FROM departments ORDER BY dept_name DESC');                
+                $cont = 0;
+                
+                while ($nombre = $nombres->fetch_array()) {
+
+                    // echo "Nombre del Post: ". $nombresPost[$cont]. " ";
+                    // echo "Nombre Anterior: ". $nombre['dept_name'];
+
+                    if ($nombresPost[$cont] === $nombre['dept_name']) {
+                        // echo " Son iguales<br>";
+                    } else {
+                        // echo " No son iguales<br>";
+                        $conexion->query('UPDATE departments SET dept_name="'. $nombresPost[$cont] .'" WHERE dept_no="'. $nombre['dept_no'] .'"');
+                    }
+                    $cont ++;
+                }
             }
         }
 
 
         // 2.- Generacion e impresión del resultado
 
-        $resultados = $conexion->query('SELECT * FROM department');
+        $resultados = $conexion->query('SELECT * FROM departments ORDER BY dept_name DESC');
 
     ?>
         <div class="mainContainer">
@@ -96,7 +117,7 @@
                     ?>
                 </div>
                 <div class="updateContainer">
-                    <input type="submit" value="Actualizar">
+                    <input type="submit" value="Actualizar" name="Actualizar">
                 </div>
 
             </form>
