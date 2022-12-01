@@ -31,12 +31,12 @@
 
 <body>
     <?php
-    @$conexion = new mysqli('localhost', 'root', '', 'mysql_employees');
+    @$conexion = new mysqli('localhost', 'root', '', 'employees');
 
     $error = $conexion->connect_errno;
 
     if ($error != null) {
-        echo "<p>Error $error conectando a la base de datos: $dwes->connect_error</p>";
+        echo "<p>Error $error conectando a la base de datos: $conexion->connect_error</p>";
         exit();
     } else {
 
@@ -67,8 +67,10 @@
                 // $compro = $conexion->query("INSERT INTO department (dept_name) VALUES ('.$nuevoNombre.')");
                 require_once './funciones.php';
                 sumarKey($conexion);
+                
             } elseif (isset($_POST['Actualizar'])){
                 // TODO
+
             }
         }
 

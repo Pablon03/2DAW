@@ -28,6 +28,7 @@
             
             exec('cd ./bbdd && C:\xampp\mysql\bin\mysql.exe -u root < employees.sql', $output, $retval);
             echo '<h1>Tu tabla ya ha sido restaurada</h1>';
+            
         // Si no se muestra el botón de reiniciar
         } else {
     ?>
