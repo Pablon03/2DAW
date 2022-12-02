@@ -5,6 +5,7 @@
 
 html {
     padding: 0;
+    margin: 0;
     font-size: 62.5%;
 }
 
@@ -166,6 +167,10 @@ tfoot th {
     }
 }
 
+.boton {
+    text-align: center;
+}
+
 /* Barra Superior */
 
 #navbar {
@@ -178,7 +183,7 @@ tfoot th {
     display: block;
     color: #f2f2f2;
     text-align: center;
-    padding: 14px 16px;
+    padding:    4px 16px;
     text-decoration: none;
     font-size: 17px;
 }
@@ -196,23 +201,29 @@ tfoot th {
 /* Barra Lateral Izquierda */
 
 .sidebar {
-    height: 100%;
     width: 200px;
-    position: fixed !important;
-    z-index: 1;
     overflow: auto;
     color: #000 !important;
     background-color: #f1f1f1 !important;
-    text-align: left;
-    padding: 8px 16px;
-    display: block;
-    border: none;
-    white-space: normal;
-    float: none;
-    outline: 0;
+    padding: 8px 16px;  
 }
 
-.itemBarra{
+.itemBarra {
     display: block;
     width: 100%;
+}
+
+/*Barra Inferior*/
+
+#barraInferior{
+    height: 80px;
+    background-color: black;
+    z-index: 99;
+}
+
+/*Main Container*/
+.main-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
 }

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>CodePen - Responsive Table + Detail View</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" href="./styles.css?2.1">
+    <link rel="stylesheet" href="./styles.css?2.3">
 
 </head>
 
@@ -18,53 +18,67 @@
     </div>
 
     <!-- Barra Lateral -->
-    <div class="sidebar" style="width:25%">
-        <h3 class="w3-bar-item">Menu</h3>
-        <a href="#" class="itemBarra">Listado Paciente</a>
-        <a href="#" class="itemBarra">Ficha Paciente</a>
-        <a href="#" class="itemBarra">Administracion</a>
-      </div>
-
-
-    <div style="margin-left:25%; padding: 150px 100px;">
-    <main>
-        <table>
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Apellido 1</th>
-                    <th>Apellido 2</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Nombre1</td>
-                    <td>Apellido1</td>
-                    <td>Apellido1</td>
-                    <td><a class='button' href='./verPefil.html'>Seleccionar</a></td>
-                </tr>
-                <tr>
-                    <td>Nombre2</td>
-                    <td>Apellido2</td>
-                    <td>Apellido2</td>
-                    <td><a class='button' href='./verPefil.html'>Seleccionar</a></td>
-                </tr>
-                <tr>
-                    <td>Nombre3</td>
-                    <td>Apellido3</td>
-                    <td>Apellido3</td>
-                    <td><a class='button' href='./verPefil.html'>Seleccionar</a></td>
-                </tr>
-                <tr>
-                    <td>Nombre4</td>
-                    <td>Apellido4</td>
-                    <td>Apellido4</td>
-                    <td><a class='button' href='./verPefil.html'>Seleccionar</a></td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="main-container">
+        <div class="sidebar" style="width:25%">
+            <h3>Menu</h3>
+            <a href="#" class="itemBarra">Listado Paciente</a>
+            <a href="#" class="itemBarra">Ficha Paciente</a>
+            <a href="#" class="itemBarra">Administracion</a>
+        </div>
+    
+    
+        <div style="margin-left:25%; width: 75%; padding: 150px;">
+            <main>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido 1</th>
+                            <th>Apellido 2</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nombre1</td>
+                            <td>Apellido1</td>
+                            <td>Apellido1</td>
+                            <td class="boton"><a class='button' href='./verPefil.html'>Seleccionar</a></td>
+                        </tr>
+                        <tr>
+                            <td>Nombre2</td>
+                            <td>Apellido2</td>
+                            <td>Apellido2</td>
+                            <td class="boton"><a class='button' href='./verPefil.html'>Seleccionar</a></td>
+                        </tr>
+                        <tr>
+                            <td>Nombre3</td>
+                            <td>Apellido3</td>
+                            <td>Apellido3</td>
+                            <td class="boton"><a class='button' href='./verPefil.html'>Seleccionar</a></td>
+                        </tr>
+                        <tr>
+                            <td>Nombre4</td>
+                            <td>Apellido4</td>
+                            <td>Apellido4</td>
+                            <td class="boton"><a class='button' href='./verPefil.html'>Seleccionar</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
     </div>
-</body>
 
+
+    <!-- Barra Superior -->
+    <div id="barraInferior">
+        <ul>
+            <li id="masZoom"><a href="#home">ZOOM +</a></li>
+            <li id="menosZoom"><a href="#news">ZOOM -</a></li>
+            <li id="cambiarcontraste"> <a href="#contact">CAMBIAR CONTRASTE</a></li>
+            <li id="cambiarImagenes"><a href="#contact">CON/SIN IMÁGENES</a></li>
+            <li id="visionarInforme"><a href="#about">VISIONAR INFORME</a></li>
+        </ul>
+    </div>
+
+</body>
 </html>

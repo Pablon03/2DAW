@@ -69,15 +69,18 @@ function method1(){
 
     // Creamos variable para comprobar si es true o false
     let comprobar;
+    let respuesta;
 
     do {
         // Solicitamos número y hacemos la comprobación
-        const respuesta = prompt(SOLICITUDNUM, DEFAULTVALUE);
+        respuesta = prompt(SOLICITUDNUM, DEFAULTVALUE);
         // En caso de que sea incorrecto devvuelve false y se solicita de nuevo por teclado
         if (isNaN(respuesta) || respuesta < 0){
             comprobar = false;
             console.log(NUMEROINVALIDO);
-        } comprobar = true;
+        } else {
+            comprobar = true;
+        }
     } while (!comprobar);
     
     // Aquí veremos si es par o impar
@@ -91,10 +94,11 @@ function method1(){
 function method2(){
     // Creamos variable para comprobar si es true o false
     let comprobar;
+    let respuesta;
 
     do {
         // Solicitamos nombre y hacemos la comprobación
-        const respuesta = prompt(SOLICITUDNAME, DEFAULTNAME);
+        respuesta = prompt(SOLICITUDNAME, DEFAULTNAME);
         // En caso de que sea incorrecto devvuelve false y se solicita de nuevo por teclado
         if (respuesta === '' || respuesta === null) {
             comprobar = false;
