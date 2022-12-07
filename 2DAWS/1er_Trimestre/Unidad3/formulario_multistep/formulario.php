@@ -30,5 +30,5 @@
   imprime_formulario($_SESSION['formulario']);
 
   include("./templates/footer.tpl.php");
-?>
+
 
