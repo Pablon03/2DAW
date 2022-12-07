@@ -219,6 +219,11 @@ tfoot th {
     height: 80px;
     background-color: black;
     z-index: 99;
+    display: flex;
+    justify-items: center;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 25px;
 }
 
 /*Main Container*/
@@ -226,4 +231,86 @@ tfoot th {
     width: 100%;
     display: flex;
     flex-direction: row;
+    height: 850px;
+}
+
+/*Formulario*/
+form{
+	width:500px;
+	padding:16px;
+	border-radius:10px;
+	margin:auto;
+	background-color:#ccc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form label{
+	width:72px;
+	font-weight:bold;
+	display:inline-block;
+}
+
+form input[type="text"]{
+	width:180px;
+	padding:3px 10px;
+	border:1px solid #f6f6f6;
+	border-radius:3px;
+	background-color:#f6f6f6;
+	margin:8px 0;
+	display:inline-block;
+}
+
+form input[type="submit"]{
+	width:100%;
+	padding:8px 16px;
+	margin-top:32px;
+	border:1px solid #000;
+	border-radius:5px;
+	display:block;
+	color:#fff;
+	background-color:#000;
+} 
+
+form input[type="submit"]:hover{
+	cursor:pointer;
+}
+
+/*Menú Superior verPerfil*/
+#navbarPerfil {
+    overflow: hidden;
+    background-color: #1d1d1d;
+    display: flex;
+}
+
+#navbarPerfil a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding:    4px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+#navbarPerfil a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+#navbarPerfil a.active {
+    background-color: #486f99;
+    color: white;
+}
+
+.izq{
+    width: 75%;
+}
+
+.der{
+    width: 25%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 25px;
 }
