@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="form" style="border: 1px black solid; padding: 15px;">
+        <h2>Formulario de registro</h2>
+        <form name="formulario">
+            <label for="email">Email:</label><br>
+            <input type="text" id="email" name="email"><br>
+            <label for="pass">Password:</label><br>
+            <input type="text" id="pass" name="pass"><br>
+            <label for="nombre">Nombre:</label><br>
+            <input type="text" id="nombre" name="nombre"><br>
+            <label for="edad">Edad:</label><br>
+            <input type="text" id="edad" name="edad"><br>
+
+            <fieldset>
+                <legend>Género:</legend>
+                <input type="radio" id="hombre" name="gener" value="hombre">
+                <label for="hombre">Hombre</label>
+                <input type="radio" id="mujer" name="gener" value="mujer">
+                <label for="mujer">Mujer</label>
+            </fieldset>
+            <label for="pais">País:</label><br>
+            <select id="pais" name="pais">
+                <option value="espana">España</option>
+                <option value="portugal">Portugal</option>
+            </select>
+
+            <fieldset>
+                <legend>Intereses:</legend>
+                <input type="checkbox" id="coches" name="coches" value="Coches">
+                <label for="coches"> Coches</label><br>
+                <input type="checkbox" id="motos" name="motos" value="Motos">
+                <label for="motos"> Motos</label><br>
+                <input type="checkbox" id="barcos" name="barcos" value="Barcos">
+                <label for="barcos"> Barcos</label><br>
+            </fieldset>
+        </form>
+    </div>
+
+
+    <script src="./js/app.js"></script>
+</body>
+
+</html>
