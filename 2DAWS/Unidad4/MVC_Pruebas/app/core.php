@@ -33,12 +33,14 @@ class Core
             $controladorMayus = str_replace('_', '', ucwords($this->controladorActual, '_'));
             $controlador = new $controladorMayus();
         } else {
-            header("HTTP/1.0 404 Not Found");
+            throw new Exception("No existe el controlador solicitado", 1);
         }
 
         if(method_exists($controlador, $this->metodoActual)){
             $metodo = $this->metodoActual;
             $controlador -> $metodo();
+        } else {
+            throw new Exception("No existe el método solicitado", 1);
         }
     }
 }
