@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <p id="parrafo1" onclick="this.innerHTML='Ha cambiado'" onmouseover="this.style.background='red'">Ejemplos Eventos</p>
+    <p id="parrafo2" onclick="callback(this)">Párrafo 2</p>
+    <a href="https://www.debian.org/index.es.html" onclick="return informar();">Enlace debian</a>
+
+    <script>
+        function callback(elem){
+            elem.innerHTML = "Cambio del segundo parrafo";
+        }
+
+        function informar(){
+            return confirm("¿Quieres ir a Debian?");
+        }
+
+    </script> -->
+
+    <p id="parrafo1">Ejemplo eventos</p>
+
+    <script type="text/javascript">
+        document.getElementById("parrafo1").onclick = cambiarEstilo;
+
+        function cambiarEstilo() {
+            this.innerHTML = "Cambiando el contenido";
+            document.getElementById("parrafo1").style.color = "green";
+        }
+    </script>
+</body>
+</html>
