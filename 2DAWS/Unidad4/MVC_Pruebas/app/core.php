@@ -25,6 +25,7 @@ class Core
 
         // Cogemos de aquí la dirección del controlador que queremos poner
         $controllerDireccion = './app/controladores/' . $this->controladorActual . '.php';
+
         // Comprobamos si existe el archivo
         if (is_file($controllerDireccion)) {
             require_once $controllerDireccion;
@@ -36,9 +37,10 @@ class Core
             throw new Exception("No existe el controlador solicitado", 1);
         }
 
+
         if(method_exists($controlador, $this->metodoActual)){
             $metodo = $this->metodoActual;
-            $controlador -> $metodo();
+            $controlador -> $metodo($this->parametros);
         } else {
             throw new Exception("No existe el método solicitado", 1);
         }

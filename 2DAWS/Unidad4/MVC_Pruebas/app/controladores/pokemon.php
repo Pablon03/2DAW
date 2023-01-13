@@ -14,26 +14,37 @@ class Pokemon
     // Métodos 
     public function listar(){
 
-        $datos = [
-            '1' => [
-                'nombre' => 'Pikachu',
-                'tipo' => 'eléctrico',
-                'url_imagen' => 'https://pbs.twimg.com/media/D3UIXzPWkAAQo7A.png',   
-            ],
-            '2' => [
-                'nombre' => 'Bulbasur',
-                'tipo' => 'Hierba',
-                'url_imagen' => 'https://i.pinimg.com/600x315/a5/85/20/a58520a8b86897e148361db6b4ead562.jpg',
-            ]
+        if(is_file(RUTA_APP.'\modelos\pokemon.php')){
+            require_once (RUTA_APP.'\modelos\pokemon.php');
+            $modelo_pokemon = new ModeloPokemon();
+            $datos = $modelo_pokemon->getAllPokemons();
+        } else {
+            throw new Exception("No se ha encontrado el modelo", 1);
 
-        ];
+        }
 
         if(is_file(RUTA_APP.'\vistas\pokemon\listado_pokemons.tpl.php')){
             require_once (RUTA_APP.'\vistas\pokemon\listado_pokemons.tpl.php');
-
         } else {
             throw new Exception("No se ha encontrado la vista", 1);
-            
+        }
+    }
+
+    public function ver($parametros){
+        
+        if (is_file(RUTA_APP.'\modelos\pokemon.php')) {
+            require_once (RUTA_APP.'\modelos\pokemon.php');
+            $modelo_pokemon = new ModeloPokemon();
+            $datos = $modelo_pokemon->getDatosPokemon($parametros['id']);
+
+        } else {
+            throw new Exception("No se ha encontrado el modelo", 1);
+        }
+
+        if (is_file(RUTA_APP.'\vistas\pokemon\info_pokemon.tpl.php')) {
+            require_once(RUTA_APP.'\vistas\pokemon\info_pokemon.tpl.php');
+        } else {
+            throw new Exception("No se ha encontrado la vista", 1);
         }
     }
 }

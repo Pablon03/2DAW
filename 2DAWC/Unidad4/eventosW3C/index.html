@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="parrafo1">Ejemplo eventos</p>
+    <!-- <a id="enlace" href="https://www.google.es">Vamos a Google</a> -->
+    <p id="parrafo2">Parrafo 2</p>
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////// -->
+
+    <!-- <script type="text/javascript">
+        document.getElementById("parrafo1").addEventListener("click", callback, false);
+        document.getElementById("parrafo1").addEventListener("click", callback2, false);
+        document.getElementById("parrafo1").addEventListener("mouseover", callback3, false);
+        // document.getElementById("parrafo1").addEventListener("mouseout", callback4, false);
+
+        function callback() {
+            alert("De ria rondon Darel");
+            this.removeEventListener("click", callback);
+        }
+
+        function callback2(){
+            this.style.color = "green";
+        }
+
+        function callback3(){
+            this.style.color = "black";
+        }
+
+        function callback4(){
+            this.style.background = "white";
+        }
+
+    </script> -->
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////// -->
+
+    <!-- <script type="text/javascript">
+        document.getElementById("enlace").addEventListener("click", function(e){
+            e.preventDefault();
+            alert("Hola");
+            this.innerText = "No nos vamos a Google";
+        }, false);
+    </script> -->
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////// -->
+
+    <!-- <script type="text/javascript">
+        document.getElementById("parrafo1").addEventListener("mouseover", manejador, false);
+        document.getElementById("parrafo1").addEventListener("mouseout", manejador, false);
+
+        function manejador(e){
+            switch(e.type){
+                case "mouseover":
+                    this.style.background = "red";
+                    break;
+                case "mouseout":
+                    this.style.background = "white";
+                    break;
+            }
+        }
+    </script> -->
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////// -->
+
+    <script type="text/javascript">
+        document.getElementById("parrafo1").addEventListener("mouseover", manejador, false);
+        document.getElementById("parrafo2").addEventListener("mouseout", manejador, false);
+
+        function manejador(e){
+            if(e.target.id === "parrafo1"){
+                this.innerText = "El betis es el mejón";
+
+            } else if(e.target.id === "parrafo2"){
+                this.innerText = "Por ley";
+            }
+        }
+
+    </script>
+
+    <!-- //////////////////////////////////////////////////////////////////////////////////// -->
+
+</body>
+</html>
