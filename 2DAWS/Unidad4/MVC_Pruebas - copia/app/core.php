@@ -1,7 +1,7 @@
 <?php
 class Core
 {
-    protected $controladorActual = 'controlador_pokemon';
+    protected $controladorActual = 'pokemon';
     protected $metodoActual = 'listar';
     protected $parametros = [];
 
