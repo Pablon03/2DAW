@@ -10,19 +10,20 @@ class ControladorPokemon
     {
         $this->nombrePokemon;
         $this->vidaPokemon;
+
+
+        
     }
 
     // Métodos 
     public function listar(){
 
         if(is_file(RUTA_APP.'\modelos\modelo_pokemon.php')){
-            require_once (RUTA_APP.'\modelos\modelo_pokemon.php');
             $modelo_pokemon = new ModeloPokemon();
-            $datos = $modelo_pokemon->getAllPokemons();
         } else {
             throw new Exception("No se ha encontrado el modelo", 1);
-
         }
+        $datos = $modelo_pokemon->getAllPokemons();
 
         if(is_file(RUTA_APP.'\vistas\pokemon\listado_pokemons.tpl.php')){
             require_once (RUTA_APP.'\vistas\pokemon\listado_pokemons.tpl.php');
@@ -37,13 +38,17 @@ class ControladorPokemon
      */
     public function ver($parametros){
 
+        if(is_file(RUTA_APP.'\modelos\modelo_pokemon.php')){
+            $modelo_pokemon = new ModeloPokemon();
+        } else {
+            throw new Exception("No se ha encontrado el modelo", 1);
+        }
+
         // Comprueba si es un dígito o no
         if (ctype_digit($parametros['id'])) {
 
             // Lanza modelo y obtiene los datos del pokemon
             if (is_file(RUTA_APP.'\modelos\modelo_pokemon.php')) {
-                require_once (RUTA_APP.'\modelos\modelo_pokemon.php');
-                $modelo_pokemon = new ModeloPokemon();
                 $datos = $modelo_pokemon->getDatosPokemon($parametros['id']);
             } else {
                 throw new Exception("No se ha encontrado el modelo", 1);
@@ -59,5 +64,25 @@ class ControladorPokemon
         } else {
             throw new Exception("El ID no es un dígito");
         }
+    }
+
+
+    	/* Delete */
+	public function delete(){
+
+        if(is_file(RUTA_APP.'\modelos\modelo_pokemon.php')){
+            $modelo_pokemon = new ModeloPokemon();
+        } else {
+            throw new Exception("No se ha encontrado el modelo", 1);
+        }
+
+        $modelo_pokemon->delete($_POST['id']); 
+
+        $datos = $modelo_pokemon->getAllPokemons();
+        require_once (RUTA_APP.'\vistas\pokemon\listado_pokemons.tpl.php');
+	}
+
+    public function newPokemon(){
+        require_once (RUTA_APP.'\vistas\pokemon\insertar_pokemon.tpl.php');
     }
 }
