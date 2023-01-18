@@ -5,6 +5,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>DWEC05 - CONT_R22 Validacion de un Formulario</title>
+  
   <style type="text/css">
 
     fieldset {
@@ -23,10 +24,6 @@
       align-items: flex-start;
       justify-content: flex-start;
     }
-
-    input:invalid{
-      border: #FF0000 1px solid;
-    }
     
   </style>
 </head>
@@ -34,26 +31,26 @@
 <body>
   <fieldset>
     <h3>Formulario de registro</h3>
-    <form name="formulario" id="formulario" action="http://www.google.es" method="get">
+    <form name="formulario" id="formulario" method="get">
 
       <section class="sectionForm">
         <label for="email">Email:</label>
-        <input type="email" name="email" id="email" required/>
+        <input type="email" name="email" id="email"/>
       </section>
 
       <section class="sectionForm">
         <label for="password">Password:</label>
-        <input type="password" name="password" id="password" required/>
+        <input type="password" name="password" id="password"/>
       </section>
 
       <section class="sectionForm">
         <label for="nombre">Nombre:</label>
-        <input type="text" name="nombre" id="nombre" size="10"/>
+        <input type="text" name="nombre" id="nombre"/>
       </section>
 
       <section class="sectionForm">
         <label for="edad">Edad:</label>
-        <input name="edad" type="text" id="edad" min="18" max="100"/>
+        <input name="edad" type="text" id="edad"/>
       </section>
 
       <section class="sectionFormGenero">
@@ -87,6 +84,7 @@
       <input type="submit" name="enviar" id="enviar" value="Enviar" />
     </form>
   </fieldset>
+  <script type="text/javascript" src="./app.js"></script>
 </body>
 
 </html>
