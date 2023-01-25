@@ -1,0 +1,92 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>DWEC05 - CONT_R22 Validacion de un Formulario</title>
+  
+  <style type="text/css">
+
+    fieldset {
+      background: #CCFF99;
+      width: 350px;
+    }
+
+    .error {
+      border: solid 2px #FF0000;
+
+    }
+
+    section.sectionForm {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    input#enviar:disabled{
+        background-color: blue;
+        color: white;
+    }
+    
+  </style>
+</head>
+
+<body>
+  <fieldset>
+    <h3>Formulario de registro</h3>
+    <form name="formulario" id="formulario" method="get">
+
+      <section class="sectionForm">
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email"/>
+      </section>
+
+      <section class="sectionForm">
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password"/>
+      </section>
+
+      <section class="sectionForm">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" id="nombre"/>
+      </section>
+
+      <section class="sectionForm">
+        <label for="edad">Edad:</label>
+        <input name="edad" type="text" id="edad"/>
+      </section>
+
+      <section class="sectionFormGenero">
+        <label for="genero">Género:</label><br>
+        <input type="radio" id="hombre" name="genero" value="genero">
+        <label for="genero">Hombre</label>
+        <input type="radio" id="mujer" name="genero" value="mujer">
+        <label for="mujer">Mujer</label>
+      </section>
+
+      <section class="sectionForm">
+        <label for="pais">País:</label>
+
+        <select name="pais" id="pais"></select>
+      </section>
+
+      <section class="sectionFormCheckbox">
+        <label>Intereses: </label><br>
+        <input type="checkbox" id="coches" name="coches" value="Coches">
+        <label for="coches"> Coches</label>
+        <input type="checkbox" id="motos" name="motos" value="Motos">
+        <label for="motos"> Motos</label>
+        <input type="checkbox" id="barcos" name="barcos" value="Barcos">
+        <label for="barcos"> Barcos</label>
+      </section>
+
+      <input type="reset" name="limpiar" id="limpiar" value="Limpiar" />
+      <input type="submit" name="enviar" id="enviar" value="Enviar" />
+    </form>
+  </fieldset>
+  <script type="text/javascript" src="./app.js"></script>
+</body>
+
+</html>

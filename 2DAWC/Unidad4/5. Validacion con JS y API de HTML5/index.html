@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="container" class="container">
+      <form name="formulario" class="formulario" id="formularioId" action="" novalidate>
+        <h1>Formulario de Registro</h1>
+        <section class="sectionForm" id="email">
+          <label for="email">Email:</label>
+          <input type="email" name="email" id="email" required />
+        </section>
+        <section class="sectionForm" id="password">
+          <label for="password">Password:</label>
+          <input type="password" name="password" id="password" required />
+        </section>
+        <section class="sectionForm" id="nombre">
+          <label for="nombre">Nombre:</label>
+          <input type="text" name="nombre" id="nombre" maxlength="10" />
+        </section>
+        <section class="sectionForm" id="edad">
+          <label for="edad">Edad:</label>
+          <input type="text" name="edad" id="edad" min="18" max="100" />
+        </section>
+
+        <fieldset>
+          <legend>Género:</legend>
+          <input type="radio" name="genero" id="hombre" />
+          <label for="hombre">Hombre</label>
+          <input type="radio" name="genero" id="mujer" />
+          <label for="mujer">Mujer</label>
+        </fieldset>
+
+        <section id="pais">
+          <label for="pais">Pais:</label>
+          <select name="pais" id="pais">
+            <option value="España">España</option>
+          </select>
+        </section>
+        <fieldset>
+          <legend>Intereses:</legend>
+          <input type="checkbox" name="coches" id="coches" />
+          <label for="coches">Coches</label>
+          <input type="checkbox" name="motos" id="motos" />
+          <label for="motos">Motos</label>
+          <input type="checkbox" name="barcos" id="barcos" />
+          <label for="barcos">Barcos</label>
+        </fieldset>
+        <input id="submit" type="submit" />
+      </form>
+    </div>
+    <script src="js/app.js"></script>
+  </body>
+</html>
