@@ -116,12 +116,12 @@ class ModeloPokemon
         $resultado = json_decode($resultado, true);
         curl_close($ch);
 
-        $datosPokemon['nombre'] = $resultado['forms'][0]['name'];
-        $datosPokemon['id_pok'] = $resultado['id'];
-        $datosPokemon['tipo'] = $resultado['types'][0]['type']['name'];
-        $datosPokemon['url_imagen'] = $resultado['sprites']['front_default'];
+        $datosPokemon['pok_nombre'] = $resultado['forms'][0]['name'];
+        $datosPokemon['pok_id'] = $resultado['id'];
+        $datosPokemon['tipo_nombre'] = $resultado['types'][0]['type']['name'];
+        $datosPokemon['pok_imagen'] = $resultado['sprites']['front_default'];
         
-        return $resultado;
+        return $datosPokemon;
     }
 
     private function _getPokemonsFromDB($id)
