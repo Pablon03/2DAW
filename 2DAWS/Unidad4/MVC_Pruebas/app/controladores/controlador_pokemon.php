@@ -3,30 +3,31 @@
 class ControladorPokemon
 {
     private $mensajes_usuario;
-    
+
 
     // Constructor
     public function __construct()
     {
-        if(isset($_SESSION['mensajes_usuario'])){
+        if (isset($_SESSION['mensajes_usuario'])) {
             $this->mensajes_usuario = $_SESSION['mensajes_usuario'];
-          }else{
+        } else {
             $this->mensajes_usuario = '';
-          }
+        }
     }
 
     // Métodos 
-    public function listar($params){
+    public function listar($params)
+    {
         $mensajes_usuario = $this->mensajes_usuario;
         $modelo_pokemon = new ModeloPokemon();
         $datos = $modelo_pokemon->getAllPokemons($params);
-      
-      if(is_file("./app/vistas/pokemon/listado_pokemons.tpl.php")){
-        require_once('./app/vistas/pokemon/listado_pokemons.tpl.php');
-        $_SESSION['mensajes_usuario'] = '';
-      }else{
-        throw new Exception('Vista no disponible');
-      }
+
+        if (is_file("./app/vistas/pokemon/listado_pokemons.tpl.php")) {
+            require_once('./app/vistas/pokemon/listado_pokemons.tpl.php');
+            $_SESSION['mensajes_usuario'] = '';
+        } else {
+            throw new Exception('Vista no disponible');
+        }
     }
 
     /**
@@ -107,6 +108,29 @@ class ControladorPokemon
                 $this->mensajes_usuario = $_SESSION['mensajes_usuario'];
                 header('Location: ./?controlador=pokemon&metodo=insertPokemon');
             };
+        }
+    }
+
+    public function cargarEnBBDD($params)
+    {
+        $modelo = new ModeloPokemon();
+
+        // echo "<pre>";
+        // print_r($_POST);
+        // echo "</pre>";
+
+        if (is_file("./app/vistas/pokemon/listado_pokemons.tpl.php")) {
+            $datos = array();
+
+            $datos['pokemons'] = $modelo->getAllPokemons($params);
+
+            echo "<pre>";
+            print_r($datos['pokemons']);
+            echo "</pre>";
+
+            require_once('./app/vistas/pokemon/listado_pokemons.tpl.php');
+        } else {
+            throw new Exception('Vista no disponible');
         }
     }
 }
