@@ -11,23 +11,31 @@
   <div id="formulario0001">
     <form class="contenedor" action="prueba.php" name="formulario" id="formulario" method="POST">
       <h1>Formulario de registro</h1>
-      <label for="email">Email <span class="requerido">*</span>:</label><br>
-      <input type="email" placeholder="nombre@ejemplo.com" id="email" name="email" required><br>
-      <label for="pass">Password <span class="requerido">*</span>:</label><br>
-      <input type="text" pattern=".*\d.*" id="pass" name="pass" title="Debe incluir al menos un número" required><br>
-      <label class="aclaracion" for="pass">El password debe contener al menos un número</label><br>
-      <label for="nombre">Nombre:</label><br>
-      <input type="text" id="nombre" name="nombre" maxlength="10"><br>
-      <label for="edad">Edad:</label><br>
-      <input type="number" id="edad" min="18" max="100" name="edad"><br>
+      
+      <label for="inputEmail">Email <span class="requerido">*</span>:</label><br>
+      <input type="email" placeholder="nombre@ejemplo.com" id="inputEmail" name="inputEmail" required><br>
+      
+      <label for="inputPassword">Password <span class="requerido">*</span>:</label><br>
+      <input type="text" pattern=".*\d.*" id="inputPassword" name="inputPassword" title="Debe incluir al menos un número" required><br>
+      <label class="aclaracion" for="inputPassword">El password debe contener al menos un número</label><br>
+
+      <label for="inputPassword2">Repite la contraseña: <span class="requerido">*</span>:</label><br>
+      <input type="text" pattern=".*\d.*" id="inputPassword2" name="inputPassword2" title="Debe incluir al menos un número" required><br>
+      
+     
+      <label for="inputName">Nombre:</label><br>
+      <input type="text" id="inputName" name="inputName" maxlength="10"><br>
+
+      <label for="inputEdad">Edad:</label><br>
+      <input type="number" id="inputEdad" min="18" max="100" name="inputEdad"><br>
       <label class="aclaracion" for="pass">Introduce un número entre 18 y 100</label><br>
 
       <fieldset>
         <legend>Género:</legend>
-        <input class="radio" type="radio" id="hombre" name="genero" value="hombre">
-        <label for="hombre">Hombre</label>
-        <input class="radio" type="radio" id="mujer" name="genero" value="mujer">
-        <label for="mujer">Mujer</label>
+        <input class="radio" type="radio" id="inputHombre" name="genero" value="inputHombre">
+        <label for="inputHombre">Hombre</label>
+        <input class="radio" type="radio" id="inputMujer" name="genero" value="inputMujer">
+        <label for="inputMujer">Mujer</label>
       </fieldset>
 
       <label for="pais">País:</label><br>
