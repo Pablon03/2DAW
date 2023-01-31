@@ -134,7 +134,9 @@ class ModeloPokemon
         return $resultadoConsulta;
     }
 
-    /* Delete note by id */
+    /**
+     * Eliminar pokemons de la base de datos
+     */
     public function deletePokemon($id)
     {
         return $this->conection->query('DELETE from pokemons WHERE pokemons.id_pokemon = ' . $id);
