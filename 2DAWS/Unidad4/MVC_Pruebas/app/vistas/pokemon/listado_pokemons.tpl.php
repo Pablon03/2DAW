@@ -15,7 +15,7 @@
                 <td><?php echo $valorPokemon['tipo'] ?></a></td>
                 <td>
                     <a href="./?controlador_pokemon&metodo=cargarEnBBDD&source=api&id=<?php echo $valorPokemon['id_pok'] ?>">
-                        <button>freeCodeCamp</button>
+                        <button>Subir</button>
                     </a>
                 </td>
             </tr>
@@ -25,4 +25,5 @@
 <form class="form" action="./?controlador=controlador_pokemon&metodo=addPokemon" method="POST">
     <input type="submit" value="Nuevo Pokemon" />
 </form>
+<button id="vermas">Ver más</button>
 <?php include_once('./app/vistas/inc/footer.tpl.php'); ?>

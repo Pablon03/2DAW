@@ -133,4 +133,18 @@ class ControladorPokemon
             throw new Exception('Vista no disponible');
         }
     }
+
+    public function refreshPokemons()
+    {
+        $mensajes_usuario = $this->mensajes_usuario;
+        $modelo_pokemon = new ModeloPokemon();
+        $datos = $modelo_pokemon->refreshPokemons();
+
+        if (is_file("./app/vistas/pokemon/listado_pokemons.tpl.php")) {
+            require_once('./app/vistas/pokemon/listado_pokemons.tpl.php');
+            $_SESSION['mensajes_usuario'] = '';
+        } else {
+            throw new Exception('Vista no disponible');
+        }
+    }
 }

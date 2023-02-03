@@ -1,6 +1,6 @@
 <?php include_once('./app/vistas/inc/header.tpl.php'); ?>
 <h2>Introduce los datos de tu bicho</h2>
-<form method="post" action="./?controlador=pokemon&metodo=addPokemon">
+<form method="post" action="./?controlador=controlador_pokemon&metodo=addPokemon">
     <p><label for="poke_nombre">Nombre</label> <input id="poke_nombre" type="text" name="poke_nombre"></p>
     <p><label for="poke_desc">Descripción</label> <input id="poke_desc" type="text" name="poke_desc"></p>
     <p><label for="poke_img">Imagen</label> <input id="poke_img" type="url" name="poke_img"></p>
