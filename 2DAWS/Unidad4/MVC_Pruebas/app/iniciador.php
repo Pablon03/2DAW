@@ -1,5 +1,6 @@
 <?php
 require_once './app/config/config.php';
+session_start();
 
 spl_autoload_register(function($nombre_clase){
     //Buscamos la ruta a la clase dentro del directorio app

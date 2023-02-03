@@ -1,6 +1,5 @@
-<?php include_once('./app/vistas/inc/header.tpl.php'); ?>
 <h1>Listado de pokemons</h1>
-<table id="pokemonsTabla">
+<table>
     <thead>
         <th>Foto</th>
         <th>Nombre</th>
@@ -22,8 +21,3 @@
         <?php endforeach ?>
     </tbody>
 </table>
-<form class="form" action="./?controlador=controlador_pokemon&metodo=addPokemon" method="POST">
-    <input type="submit" value="Nuevo Pokemon" />
-</form>
-<button id="vermas">Ver más</button>
-<?php include_once('./app/vistas/inc/footer.tpl.php'); ?>

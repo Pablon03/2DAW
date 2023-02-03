@@ -52,9 +52,9 @@ class ModeloPokemon
         $resultado = json_decode($resultado, true);
         curl_close($ch);
 
-        echo ("<pre>");
-        print_r($resultado);
-        echo ("</pre>");
+        // echo ("<pre>");
+        // print_r($resultado);
+        // echo ("</pre>");
 
 
         ////////////Primera petición para info del Pokemon//////////////////
@@ -158,32 +158,44 @@ class ModeloPokemon
 
     public function refreshPokemons()
     {
-        ////////////Primera petición para Nombre e ID//////////////////
-        $ch = curl_init("https://pokeapi.co/api/v2/pokemon/");
+
+        if (!isset($_SESSION['arrayPokemon'])) {
+            $_SESSION['arrayPokemon'] = array(
+                'url' => 'https://pokeapi.co/api/v2/pokemon',
+                'pokemons' => array()
+            );
+            ////////////Primera petición para Nombre e ID//////////////////
+            $ch = curl_init($_SESSION['arrayPokemon']['url']);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $resultado = curl_exec($ch);
+            $resultado = json_decode($resultado, true);
+            curl_close($ch);
+
+            ////////////Cogemos la URL de la siguiente consulta//////////////////
+            $_SESSION['arrayPokemon']['url'] = $resultado['next'];
+        }
+
+        // echo "FORMULARIO 1";
+        // echo "<pre>";
+        // print_r($_SESSION['arrayPokemon']['url']);
+        // echo "</pre>";
+
+        $ch = curl_init($_SESSION['arrayPokemon']['url']);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $resultado = curl_exec($ch);
         $resultado = json_decode($resultado, true);
         curl_close($ch);
+        $_SESSION['arrayPokemon']['url'] = $resultado['next'];
 
-        
-        // echo ("<pre>");
-        // print_r($resultado);
-        // echo ("</pre>");
+        // echo "FORMULARIO 2";
+        // echo "<pre>";
+        // print_r($_SESSION['arrayPokemon']['url']);
+        // echo "</pre>";
 
-        ////////////Cogemos la URL de la siguiente consulta//////////////////
-        $nextPage = $resultado['next'];
-
-        $ch = curl_init($nextPage);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $resultado = curl_exec($ch);
-        $resultado = json_decode($resultado, true);
-        curl_close($ch);
 
         ////////////Primera petición para info del Pokemon//////////////////
 
-        $arrayPokemon = array();
-
-        for ($i = 0; $i < 15; $i++) {
+        for ($i = 0; $i < 19; $i++) {
             $url = $resultado['results'][$i]['url'];
             $ch = curl_init($url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -200,6 +212,10 @@ class ModeloPokemon
             $arrayPokemon[$i]['tipo'] = $respuesta['types'][0]['type']['name'];
             $arrayPokemon[$i]['url_imagen'] = $respuesta['sprites']['front_default'];
         }
+
+        // echo ("<pre>");
+        // print_r($_SESSION['arrayPokemon']);
+        // echo ("</pre>");
 
         return $arrayPokemon;
     }
