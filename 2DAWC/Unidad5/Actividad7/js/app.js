@@ -4,6 +4,10 @@ import { controladorCarrito, controladorBBDD } from "../js/controlador.js";
 
 /////////////////////ACTIVIDAD 1/////////////////////////////
 seeAllProducts();
+
+/**
+ * Muestra los productos en su sitio
+ */
 function seeAllProducts() {
   let arrayProducts = "";
   for (let index = 0; index < productos.length; index++) {
@@ -17,6 +21,11 @@ function seeAllProducts() {
   productsContainer.innerHTML = arrayProducts;
 }
 
+/**
+ * Crea el HTML del producto que se le pasa
+ * @param {Object} productNow 
+ * @returns 
+ */
 function seeProducts(productNow) {
   const { id, nombre, categoria, imagen, precio, vendedor, stock } = productNow;
 
@@ -42,6 +51,9 @@ function seeProducts(productNow) {
 seeAllCategories();
 putListeners();
 
+/**
+ * Muestra las categorias en la barra lateral izquierda
+ */
 function seeAllCategories() {
   let arrayCategories = `<form>
     <fieldset id="filtro-categoria" name="filtro-categoria">
@@ -58,6 +70,11 @@ function seeAllCategories() {
   categorieContainer.innerHTML = arrayCategories;
 }
 
+/**
+ * Crea el HTML para las categorias
+ * @param {Object} categoryNow 
+ * @returns 
+ */
 function seeCategorie(categoryNow) {
   const { id, nombre } = categoryNow;
 
@@ -67,38 +84,72 @@ function seeCategorie(categoryNow) {
     </div>`;
 }
 
+/**
+ * Pone listeners
+ */
 function putListeners() {
   document
     .getElementById("filter-container")
     .addEventListener("click", filterCategories, false);
 }
 
+/**
+ * Aquí entra cuando se hace click en la barra lateral izquierda
+ * Gestiona el evento de aplicar filtros
+ * @param {evento} e
+ */
 function filterCategories(e) {
-  const checkboxElements = document.querySelectorAll(
+  const arrayChecked = getChecked();
+  cleanProducts();
+  const htmlProducts = traverseArrayChecked(arrayChecked);
+
+  const productsContainer = document.getElementById("products-container");
+  productsContainer.innerHTML = htmlProducts;
+}
+
+/**
+ * Limpia la parte de productos
+ */
+function cleanProducts() {
+  document.getElementById("products-container").innerHTML = "";
+}
+
+/**
+ * Devuelve un array de las categorias que se le ha dado check
+ * @returns Array
+ */
+function getChecked() {
+  let checkboxElements = document.querySelectorAll(
     'input[type="checkbox"]:checked'
   );
-  //
-  let arrayProductsFilter = "";
 
-  cleanProducts();
+  let checkboxElementsArray = [];
 
-  for (const checkbox of checkboxElements) {
-    let arrayProducts = controladorBBDD.filterCategoriesProducts(
-      checkbox.value
-    );
+  for (let index = 0; index < checkboxElements.length; index++) {
+    checkboxElementsArray.push(checkboxElements[index].value);
+  }
+
+  return checkboxElementsArray;
+}
+
+/**
+ * Recorre el array para meter la cadena HTML de los produtos a mostrar
+ * de las categorias seleccionadas
+ * @param {Array} arrayChecked 
+ * @returns 
+ */
+function traverseArrayChecked(arrayChecked) {
+  let arrayProductsFilter;
+  let arrayProducts = [];
+
+  for (const checkbox of arrayChecked) {
+    let arrayProducts = controladorBBDD.filterCategoriesProducts(checkbox);
 
     for (let index = 0; index < arrayProducts.length; index++) {
       let productNow = controladorBBDD.getProductsByID(arrayProducts[index].id);
-      arrayProductsFilter += seeProducts(productNow);
+      arrayProductsFilter += seeProducts(productNow[0]);
     }
   }
 
-  //   cleanProducts();
-
-  //   const productsContainer = document.getElementById("products-container");
-  //   productsContainer.innerHTML = arrayProducts;
-}
-
-function cleanProducts() {
-  document.getElementById("products-container").innerHTML = "";
+  return arrayProductsFilter;
 }
