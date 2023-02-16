@@ -23,8 +23,8 @@ function seeAllProducts() {
 
 /**
  * Crea el HTML del producto que se le pasa
- * @param {Object} productNow 
- * @returns 
+ * @param {Object} productNow
+ * @returns
  */
 function seeProducts(productNow) {
   const { id, nombre, categoria, imagen, precio, vendedor, stock } = productNow;
@@ -72,8 +72,8 @@ function seeAllCategories() {
 
 /**
  * Crea el HTML para las categorias
- * @param {Object} categoryNow 
- * @returns 
+ * @param {Object} categoryNow
+ * @returns
  */
 function seeCategorie(categoryNow) {
   const { id, nombre } = categoryNow;
@@ -91,6 +91,10 @@ function putListeners() {
   document
     .getElementById("filter-container")
     .addEventListener("click", filterCategories, false);
+
+  document
+    .getElementById("button-container")
+    .addEventListener("click", addProductCart, false);
 }
 
 /**
@@ -135,8 +139,8 @@ function getChecked() {
 /**
  * Recorre el array para meter la cadena HTML de los produtos a mostrar
  * de las categorias seleccionadas
- * @param {Array} arrayChecked 
- * @returns 
+ * @param {Array} arrayChecked
+ * @returns
  */
 function traverseArrayChecked(arrayChecked) {
   let arrayProductsFilter;
@@ -152,4 +156,48 @@ function traverseArrayChecked(arrayChecked) {
   }
 
   return arrayProductsFilter;
+}
+
+/////////////////////ACTIVIDAD 3/////////////////////////////
+
+function addProductCart(e) {
+  e.preventDefault();
+  const button = e.target;
+  if (button.classList.contains("add")) {
+    const idProduct = button.parentNode.parentNode.parentNode.parentNode.id;
+    const productDDBB = controladorBBDD.getProducts(idProduct);
+    controladorCarrito.addProduct(productDDBB);
+  }
+
+  refreshCartHTML();
+}
+
+function refreshCartHTML() {
+  cleanHTMLCart();
+  addHTMLCart();
+}
+
+function cleanHTMLCart() {
+  document.querySelector("#lista-carrito tbody").innerHTML = "";
+}
+
+function addHTMLCart() {
+  const product = controladorCarrito.getProducts();
+  product.forEach((product) => {
+    const { id, nombre, categoria, imagen, precio, vendedor, stock, cantidad } =
+      product;
+    const fila = document.createElement("tr");
+    fila.innerHTML = `
+    <td>  
+         <img src="${imagen}">
+    </td>
+    <td>${nombre}</td>
+    <td>${precio}€</td>
+    <td>${cantidad} </td>
+    <td>
+         <a href="#1" class="borrar-curso" data-id="${id}">X</a>
+    </td>
+`;
+    document.querySelector("#list-carrito tbody").appendChild(fila);
+  });
 }
