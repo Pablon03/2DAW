@@ -14,6 +14,10 @@ class CursoController extends Controller
         return view('cursos.index', compact('cursos'));
     }
 
+    public function store(){
+        
+    }
+
     public function create(){
         return view('cursos.create');
     }
@@ -23,5 +27,6 @@ class CursoController extends Controller
         $curso = Curso::find($id);
         return view('cursos.show', compact('curso'));
     }
+
 }
 
