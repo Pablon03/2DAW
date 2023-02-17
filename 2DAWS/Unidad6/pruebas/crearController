@@ -1,0 +1,15 @@
+//Crear un nuevo controlador de registro con los métodos showRegistrationForm y register
+php artisan make:controller RegisterController
+
+//Primero, creamos un nuevo controlador llamado LikesAndFollowsController utilizando el siguiente comando de Artisan:
+php artisan make:controller LikesAndFollowsController
+
+//Crear el HomeController
+php artisan make:controller HomeController
+
+// Crear Follow controller
+php artisan make:controller FollowController
+
+
+// Crear LikeController
+php artisan make:controller LikeController

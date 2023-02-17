@@ -14,8 +14,15 @@ class CursoController extends Controller
         return view('cursos.index', compact('cursos'));
     }
 
-    public function store(){
-        
+    public function store(Request $request){
+        $curso = new Curso();
+        $curso->name = $request->name;
+        $curso->descripcion = $request->descripcion;
+        $curso->categoria = $request->categoria;
+
+        $curso->save();
+
+        return redirect()->route('cursos.show', $curso->id);
     }
 
     public function create(){
