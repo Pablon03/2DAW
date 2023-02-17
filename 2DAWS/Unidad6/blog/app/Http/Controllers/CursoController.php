@@ -18,20 +18,12 @@ class CursoController extends Controller
     public function store(Request $request){
         $curso = new Curso();
         $curso->name = $request->name;
-<<<<<<< HEAD
-        $curso->descripcion = $request->descripcion;
-=======
         $curso->description = $request->description;
->>>>>>> 810357b40b069f61e1bd079a2daf10d027802808
         $curso->categoria = $request->categoria;
 
         $curso->save();
 
-<<<<<<< HEAD
-        return redirect()->route('cursos.show', $curso->id);
-=======
         return redirect(route('curso.view', $curso->id));
->>>>>>> 810357b40b069f61e1bd079a2daf10d027802808
     }
 
     public function create(){
@@ -54,3 +46,4 @@ class CursoController extends Controller
 
         return $curso;
     }
+}
