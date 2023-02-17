@@ -36,7 +36,7 @@ export class controladorCarrito {
     return JSON.parse(localStorage.getItem(id));
   }
 
-  static productExist() {
+  static productExist(id) {
     return controladorCarrito.getProduct(id) !== null;
   }
 
@@ -46,10 +46,10 @@ export class controladorCarrito {
   }
 
   static addProduct(product) {
-    if (producto) {
+    if (product) {
       const id = product.id;
       if (controladorCarrito.productExist(id)) {
-        product = ControladorCarrito.getProduct(id);
+        product = controladorCarrito.getProduct(id);
         product.quantity += 1;
       } else {
         product.quantity = 1;

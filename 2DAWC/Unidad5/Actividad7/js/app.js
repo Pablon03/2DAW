@@ -93,8 +93,16 @@ function putListeners() {
     .addEventListener("click", filterCategories, false);
 
   document
-    .getElementById("button-container")
+    .getElementById("products-container")
     .addEventListener("click", addProductCart, false);
+
+  document
+    .getElementById("contenedor-tabla-carrito")
+    .addEventListener("click", deleteProductCart, false);
+
+  document
+    .getElementById("vaciar-carrito")
+    .addEventListener("click", cleanCartEvent, false);
 }
 
 /**
@@ -109,6 +117,7 @@ function filterCategories(e) {
 
   const productsContainer = document.getElementById("products-container");
   productsContainer.innerHTML = htmlProducts;
+
 }
 
 /**
@@ -164,8 +173,8 @@ function addProductCart(e) {
   e.preventDefault();
   const button = e.target;
   if (button.classList.contains("add")) {
-    const idProduct = button.parentNode.parentNode.parentNode.parentNode.id;
-    const productDDBB = controladorBBDD.getProducts(idProduct);
+    const idProduct = button.parentNode.parentNode.parentNode.id;
+    const productDDBB = controladorBBDD.getProductsByID(idProduct)[0];
     controladorCarrito.addProduct(productDDBB);
   }
 
@@ -184,7 +193,7 @@ function cleanHTMLCart() {
 function addHTMLCart() {
   const product = controladorCarrito.getProducts();
   product.forEach((product) => {
-    const { id, nombre, categoria, imagen, precio, vendedor, stock, cantidad } =
+    const { id, nombre, categoria, imagen, precio, vendedor, stock, quantity } =
       product;
     const fila = document.createElement("tr");
     fila.innerHTML = `
@@ -193,11 +202,26 @@ function addHTMLCart() {
     </td>
     <td>${nombre}</td>
     <td>${precio}€</td>
-    <td>${cantidad} </td>
+    <td>${quantity} </td>
     <td>
-         <a href="#1" class="borrar-curso" data-id="${id}">X</a>
+         <a href="#" class="borrar-curso" data-id="${id}">X</a>
     </td>
 `;
-    document.querySelector("#list-carrito tbody").appendChild(fila);
+    document.querySelector("#lista-carrito tbody").appendChild(fila);
   });
+}
+
+function deleteProductCart(e){
+  e.preventDefault();
+  const button = e.target;
+  if(button.classList.contains("borrar-curso")){
+    const id = button.getAttribute("data-id");
+    controladorCarrito.deleteProduct(id);
+  }
+  refreshCartHTML();
+}
+
+function cleanCartEvent(){
+  cleanHTMLCart();
+  controladorCarrito.vaciarCarrito();
 }
