@@ -25,4 +25,23 @@ export class ControladorPHP {
         }
         return respuestaJSON;
     }
+
+    static async mostrarClientes() {
+        let respuestaJSON = null;
+        try {
+            const respuesta = await fetch(`citasClientes.php`, {
+                method : "POST",
+                headers : {
+                    "content-type" : "application/json"
+                },
+                body : JSON.stringify({
+                   metodo: "getClientes"
+                })
+            });
+            respuestaJSON = await respuesta.json();
+        }catch(error) {
+            console.error(error.message);
+        }
+        return respuestaJSON;
+    }
 }

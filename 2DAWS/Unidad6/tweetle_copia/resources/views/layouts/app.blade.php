@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
     <title>@yield('title')</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
     @yield('content')
