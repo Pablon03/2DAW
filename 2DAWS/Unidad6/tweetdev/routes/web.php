@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PostController;  
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,23 +15,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::controller(HomeController::class)->group(function(){
-    Route::get('/', 'index') ->name('home.index');
-});
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/', [HomeController::class, 'index'])->name('index');
+
 });
 
-Route::controller(PostController::class)->group(function(){
-    Route::post('post/create', 'store')->name('post.store');
+Route::controller(PostController::class)->group(function () {
+    Route::post('store', 'store')->name('store');
 });
+
+
+
 // Route::get('/', HomeController::class);
 
 // Route::controller(CursoController::class)->group(function(){
@@ -41,4 +40,20 @@ Route::controller(PostController::class)->group(function(){
 //     Route::get('cursos/{curso}', 'show') ->name('cursos.show');
 //     Route::get('cursos/{curso}/edit', 'edit')->name('cursos.edit');
 //     Route::put('cursos/{curso}', 'update')->name('cursos.update');
+// });
+
+
+
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified'
+// ])->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('dashboard');
+//     })->name('dashboard');
+
+//     Route::get('/', function () {
+//         return view('index');
+//     })->name('inndex');
 // });

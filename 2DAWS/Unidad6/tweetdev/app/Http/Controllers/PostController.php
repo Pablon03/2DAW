@@ -8,40 +8,19 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     /**
-     * Muestra todos las publicaciones que hay
-     */
-    public function index()
-    {
-        $posts = Post::all();
-
-        return view('posts.index', compact('posts'));
-    }
-
-    /**
-     * Te muestra la vista de crear publicacion
-     */
-    public function create()
-    {
-        return view('posts.create');
-    }
-
-    /**
      * Almacena la publicacion
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'body' => 'required'
-        ]);
-
-        $post = new Post([
-            'user_id' => auth()->user()->id,
-            'body' => $request->get('body')
-        ]);
-
+        // Crear un nuevo post con los datos validados
+        $post = new Post();
+        $post->message = $request['contenido'];
+        $post->user_id = auth()->id();
+        $post->user_id = 2;
         $post->save();
 
-        return redirect('/posts')->with('success', 'Post creado exitosamente');
+        // Redirigir al usuario a la página de la lista de publicaciones
+        return redirect()->route('index');
     }
 
     /**
@@ -85,4 +64,6 @@ class PostController extends Controller
 
         return redirect('/posts')->with('success', 'Post eliminado exitosamente');
     }
+
+
 }

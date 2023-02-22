@@ -112,9 +112,12 @@ if ($metodo === "getClientes") {
 } else if ($metodo === "eliminarCliente") {
     $nif = $datos->nif;
     eliminarCliente($conn, $nif);
+    
 } else if ($metodo === "setCliente") {
     $clienteJSON = $datos->cliente;
     setCliente($conn, $clienteJSON);
+
+
 } else if ($metodo === "setCita") {
     $citaJSON = $datos->cita;
     setCita($conn, $citaJSON);
@@ -163,6 +166,7 @@ function setCita($conn, $citaJSON)
 
 function setCliente($conn, $clienteJSON)
 {
+    echo("mugordo");
     $sqlquery = "SELECT * FROM Cliente WHERE Cliente.nif='$clienteJSON->nif'";
     $clientesNIF = $conn->query($sqlquery);
     $arrayClientesNIF = obtenerArrayDeConsultaClientes($clientesNIF);
