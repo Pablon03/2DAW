@@ -27,6 +27,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 Route::controller(PostController::class)->group(function () {
     Route::post('store', 'store')->name('store');
+    Route::get('post/{post}/edit', 'edit')->name('editPost');
+    Route::put('post/{post}', 'update')->name('updatePost');
 });
 
 

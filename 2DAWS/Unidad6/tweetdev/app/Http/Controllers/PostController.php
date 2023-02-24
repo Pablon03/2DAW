@@ -16,7 +16,6 @@ class PostController extends Controller
         $post = new Post();
         $post->message = $request['contenido'];
         $post->user_id = auth()->id();
-        $post->user_id = 2;
         $post->save();
 
         // Redirigir al usuario a la página de la lista de publicaciones
@@ -36,23 +35,24 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        // return $post;
         return view('posts.edit', compact('post'));
     }
 
     /**
      * Puedes actualizar una aplicacion
      */
-    public function update(Request $request, Post $post)
+    public function update(Post $post, Request $request)
     {
         $request->validate([
-            'body' => 'required'
+            'content' => 'required'
         ]);
 
-        $post->body = $request->get('body');
+        $post->message = $request->get('content');
 
         $post->save();
 
-        return redirect('/posts')->with('success', 'Post actualizado exitosamente');
+        return redirect(route('index'))->with('success', 'Post actualizado exitosamente');
     }
 
     /**

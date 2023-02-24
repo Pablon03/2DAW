@@ -64,4 +64,24 @@ export class ControladorPHP {
         }
         return respuestaJSON;
     }
+
+    static async mostrarCitas(nif) {
+        let respuestaJSON = null;
+        try {
+            const respuesta = await fetch(`citasClientes.php`, {
+                method : "POST",
+                headers : {
+                    "content-type" : "application/json"
+                },
+                body : JSON.stringify({
+                   metodo: "getCitasCliente",
+                   nifCliente: nif,
+                })
+            });
+            respuestaJSON = await respuesta.json();
+        }catch(error) {
+            console.error(error.message);
+        }
+        return respuestaJSON;
+    }
 }

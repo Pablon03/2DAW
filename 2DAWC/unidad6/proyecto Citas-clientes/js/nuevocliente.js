@@ -12,8 +12,10 @@ function ponerEventListeners(){
 }
 
 async function gestionarSubmit(e){
+    e.preventDefault();
     const cliente = recogerDatosFormulario();
     await Controlador.setCliente(cliente);
+    window.location.href="./index.html";
 }
 
 /**
@@ -32,3 +34,6 @@ function recogerDatosFormulario(){
     };
     // return JSON.stringify(datos);
 }
+
+
+/////// GESTIONAR LA VERIFICACIÓN DE DATOS ///////

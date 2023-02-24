@@ -117,19 +117,22 @@ if ($metodo === "getClientes") {
     $clienteJSON = $datos->cliente;
     setCliente($conn, $clienteJSON);
 
-
 } else if ($metodo === "setCita") {
     $citaJSON = $datos->cita;
     setCita($conn, $citaJSON);
+
 } else if ($metodo === "eliminarCita") {
     $id = $datos->id;
     eliminarCita($conn, $id);
+
 } else if ($metodo === "getCitasCliente") {
     $nif = $datos->nifCliente;
     getCitasCliente($conn, $nif);
+
 } else if ($metodo === "eliminarBD") {
     // Este método tiene fines de depuración. Se resetean los datos de la sesión
     eliminarBD($conn, $nombreBD);
+    
 } else if ($metodo === "getCitas") {
     // Este método tiene fines de depuración. Obtiene todas las citas del sistema,
     // no importa el cliente al que pertenezcan
