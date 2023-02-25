@@ -31,6 +31,7 @@ async function mostrarClientes(){
  * @returns tr
  */
 function  getFila(cliente){
+    const telefonoFormateado = formatearTelefono($cliente.telefono);
     const tr = document.createElement("tr");
     tr.innerHTML = `<td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
     <p class="text-sm leading-5 font-medium text-gray-700 text-lg font-bold">${cliente.nombre}</p>
@@ -43,7 +44,7 @@ function  getFila(cliente){
     <p class="text-gray-600">${cliente.nif}</p>
    </td>
    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 leading-5 text-gray-700">
-    <p class="text-gray-600">${cliente.telefono}</p>
+    <p class="text-gray-600">${telefonoFormateado}</p>
    </td>
    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5">
     <a href="#" class="block text-teal-600 hover:text-teal-900 mr-2 crearCita" data-clientenombre="${cliente.nombre}"
@@ -52,6 +53,14 @@ function  getFila(cliente){
     <a href="#" class="block text-red-600 hover:text-red-900 eliminar" data-clientenombre="${cliente.nombre}" dataclienteapellidos="${cliente.apellidos}" data-clientenif="${cliente.nif}">Eliminar cliente</a>
    </td>`;
    return tr;
+}
+
+function formatearTelefono(telefono){
+    let telefonoFormateado = "";
+    if(telefono.length === 9){
+        telefonoFormateado = numero.substring(0, 3) + " " + numero.substring(3, 5) + " " + numero.substring(5, 7) + " " + numero.substring(7, 9);
+    }
+    return telefonoFormateado;
 }
 
 function comprobarClick(e){
