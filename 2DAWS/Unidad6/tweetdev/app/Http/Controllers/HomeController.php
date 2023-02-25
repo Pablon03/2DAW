@@ -6,28 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
+
 
 class HomeController extends Controller
 {
-    // /**
-    //  * Muestra los últimos posts si el usuario está logueado,
-    //  * si no lo mandará al formulario de logueo
-    //  *
-    //  * @return \Illuminate\Contracts\Support\Renderable
-    //  */
-    // public function index()
-    // {
-    //     if (Auth::check()) {
-    //         // Vista posts
-    //         $this->latestPosts();
-    //     } else {
-    //         return view('auth.login');
-    //     }
-    // }
-
-    public function index(){
-        $usuarios = User::all();
+    public function index()
+    {
         $posts = Post::orderBy('created_at', 'desc')->take(20)->get();
-        return view('homePage/home', compact('posts', 'usuarios'));
+        return view('homePage/home', compact('posts'));
     }
 }

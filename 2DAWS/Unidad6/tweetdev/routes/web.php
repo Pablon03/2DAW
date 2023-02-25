@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,33 +30,9 @@ Route::controller(PostController::class)->group(function () {
     Route::post('store', 'store')->name('store');
     Route::get('post/{post}/edit', 'edit')->name('editPost');
     Route::put('post/{post}', 'update')->name('updatePost');
+    Route::delete('post/{post}', 'destroy')->name('destroyPost');
 });
 
-
-
-// Route::get('/', HomeController::class);
-
-// Route::controller(CursoController::class)->group(function(){
-//     Route::get('cursos', 'index') ->name('cursos.index');
-//     Route::get('cursos/create', 'create') ->name('cursos.create');
-//     Route::post('cursos', 'store')->name('cursos.store');
-//     Route::get('cursos/{curso}', 'show') ->name('cursos.show');
-//     Route::get('cursos/{curso}/edit', 'edit')->name('cursos.edit');
-//     Route::put('cursos/{curso}', 'update')->name('cursos.update');
-// });
-
-
-
-// Route::middleware([
-//     'auth:sanctum',
-//     config('jetstream.auth_session'),
-//     'verified'
-// ])->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('dashboard');
-//     })->name('dashboard');
-
-//     Route::get('/', function () {
-//         return view('index');
-//     })->name('inndex');
-// });
+Route::controller(UserController::class)->group(function () {
+    Route::get('user/{id}', 'show')->name('showUser');
+});
