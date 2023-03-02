@@ -84,4 +84,44 @@ export class ControladorPHP {
         }
         return respuestaJSON;
     }
+
+    static async eliminarCliente(nif) {
+        let respuestaJSON = null;
+        try {
+            const respuesta = await fetch(`citasClientes.php`, {
+                method : "POST",
+                headers : {
+                    "content-type" : "application/json"
+                },
+                body : JSON.stringify({
+                   metodo: "eliminarCliente",
+                   nif: nif,
+                })
+            });
+            respuestaJSON = await respuesta.json();
+        }catch(error) {
+            console.error(error.message);
+        }
+        return respuestaJSON;
+    }
+
+    static async eliminarCita(id) {
+        let respuestaJSON = null;
+        try {
+            const respuesta = await fetch(`citasClientes.php`, {
+                method : "POST",
+                headers : {
+                    "content-type" : "application/json"
+                },
+                body : JSON.stringify({
+                   metodo: "eliminarCita",
+                   id: id,
+                })
+            });
+            respuestaJSON = await respuesta.json();
+        }catch(error) {
+            console.error(error.message);
+        }
+        return respuestaJSON;
+    }
 }

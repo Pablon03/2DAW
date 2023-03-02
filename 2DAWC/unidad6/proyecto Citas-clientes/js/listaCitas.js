@@ -7,13 +7,16 @@ ponerEventListeners();
  */
 function ponerEventListeners(){
     document.getElementById("crearCita").addEventListener("click", () => window.location.href="./nueva-cita.html", false);
-    document.getElementById("volverClientes").addEventListener("click", () => window.location.href="/index.html", false);
+    document.getElementById("volverClientes").addEventListener("click", () => window.location.href="./index.html", false);
 
     //// Mostrar la lista de citas cuando se cargue la web ////
     window.addEventListener('DOMContentLoaded', mostrarCitas, false);
 
     //// Mostrar el nombre bajo citas ////
     window.addEventListener('load', mostrarDatos, false);
+
+    //// Eliminar Cita ////
+    window.addEventListener("click", comprobarClick, false);
 }
 
 /**
@@ -38,9 +41,10 @@ async function mostrarCitas(e){
  * @returns tr
  */
 function getFila(cita){
+    const fechaFormateada = formatearFecha(cita.fecha);
     const tr = document.createElement("tr");
     tr.innerHTML = `<td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-    <p class="text-gray-700"> ${cita.fecha} </p>
+    <p class="text-gray-700"> ${fechaFormateada} </p>
     </td>
     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 ">
     <p class="text-gray-700">${cita.hora}</p>
@@ -57,15 +61,48 @@ function getFila(cita){
    return tr;
 }
 
+/**
+ * Muestra el nombre debajo de Cita
+ */
 function mostrarDatos(){
     const nombre = localStorage.getItem('nombreSeleccionado');
     const apellidos = localStorage.getItem('apellidoSeleccionado');
-    
-    const subituloEspacio = document.getElementById("cita-clientes");
-
-    subituloEspacio.innerHTML = nombre + apellidos;
+    const subituloEspacio = document.getElementById("cita-cliente");
+    subituloEspacio.innerHTML = `${nombre} ${apellidos}`;
 }
 
+function formatearFecha(fecha){
+    const fechaObjeto = new Date(fecha);
+    const dia = fechaObjeto.getDate();
+    const mes = fechaObjeto.getMonth() + 1;
+    const anio = fechaObjeto.getFullYear();
+    const fechaFormateada = `${dia.toString().padStart(2, '0')}-${mes.toString().padStart(2, '0')}-${anio.toString()}`;
+    return fechaFormateada;
+}
+
+function comprobarClick(e){
+    for (let index = 0; index < e.target.classList.length; index++) {
+        if (e.target.classList[index] === "eliminar") {
+          eliminarCita(e)
+        }
+      }
+}
+
+/**
+ * Elimina clientes según la confirmación
+ * @param {Event} e 
+ */
+async function eliminarCita(e){
+    const fecha = formatearFecha(e.target.getAttribute("data-citafecha"));
+    const hora = e.target.getAttribute("data-citahora");
+    const idCita = e.target.getAttribute("data-citaid");
+
+    const confirmacion = window.confirm(`¿Seguro que desea eliminar la cita del ${fecha} a las ${hora}`);
+    if(confirmacion){
+        const citaEliminada = await Controlador.eliminarCita(idCita);
+        location.reload();
+    }
+}
 /////// Dar formato a la fecha y gestionar el botón de eliminar cita ///////
 
   
