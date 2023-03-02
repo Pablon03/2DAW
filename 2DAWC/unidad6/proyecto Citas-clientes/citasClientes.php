@@ -169,7 +169,6 @@ function setCita($conn, $citaJSON)
 
 function setCliente($conn, $clienteJSON)
 {
-    echo("mugordo");
     $sqlquery = "SELECT * FROM Cliente WHERE Cliente.nif='$clienteJSON->nif'";
     $clientesNIF = $conn->query($sqlquery);
     $arrayClientesNIF = obtenerArrayDeConsultaClientes($clientesNIF);

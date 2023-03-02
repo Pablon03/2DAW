@@ -15,8 +15,10 @@ function ponerEventListeners() {
     );
   window.addEventListener("load", mostrarClientes, false);
 
+
   window.addEventListener("click", comprobarClick, false);
 }
+
 
 /**
  * Muestra clientes en la tabla clientes

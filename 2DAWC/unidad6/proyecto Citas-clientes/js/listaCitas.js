@@ -71,6 +71,11 @@ function mostrarDatos(){
     subituloEspacio.innerHTML = `${nombre} ${apellidos}`;
 }
 
+/**
+ * Da formato a la fecha
+ * @param {Date} fecha 
+ * @returns fecha formateada
+ */
 function formatearFecha(fecha){
     const fechaObjeto = new Date(fecha);
     const dia = fechaObjeto.getDate();
@@ -80,6 +85,10 @@ function formatearFecha(fecha){
     return fechaFormateada;
 }
 
+/**
+ * Comprueba si se ha dado click en eliminar
+ * @param {Event} e 
+ */
 function comprobarClick(e){
     for (let index = 0; index < e.target.classList.length; index++) {
         if (e.target.classList[index] === "eliminar") {
@@ -103,6 +112,5 @@ async function eliminarCita(e){
         location.reload();
     }
 }
-/////// Dar formato a la fecha y gestionar el botón de eliminar cita ///////
 
   

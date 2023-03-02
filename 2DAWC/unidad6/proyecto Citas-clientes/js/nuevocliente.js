@@ -19,6 +19,10 @@ function ponerEventListeners() {
       false
     );
 
+    
+  ////// Poner en focus el formulario la primera vez que entre //////
+  window.addEventListener("load", () => document.getElementById("formulario")[0].focus(), false);
+
   ////// Inputs del formulario //////
   const inputsForm = document.getElementsByTagName("input");
   for (let i = 0; i < inputsForm.length; i++) {
@@ -32,6 +36,8 @@ function ponerEventListeners() {
     }
   }
 }
+
+////// GESTIÓN DE FORMULARIO //////
 
 /**
  * Hace las comprobaciones finales y si hay un error de servidor
@@ -57,6 +63,7 @@ async function gestionarSubmit(e) {
         window.location.href = "./index.html";
     }
   }
+  console.log(document.getElementsByClassName("border-red-600")[0].focus());
 }
 
 /**
@@ -84,11 +91,8 @@ function recogerDatosFormulario() {
 function tratarRespuesta(respuesta) {
   let validacion = false;
   for (let i = 0; i < respuesta.camposError.length; i++) {
-    document.getElementById(`error-${respuesta.camposError[i]}`).innerHTML =
-      respuesta.mensajesError[i];
-    document
-      .getElementById(`error-${respuesta.camposError[i]}`)
-      .classList.add("border-red-600");
+    document.getElementById(`error-${respuesta.camposError[i]}`).innerHTML = respuesta.mensajesError[i];
+    document.getElementById(`${respuesta.camposError[i]}`).classList.add("border-red-600");
     validacion = true;
   }
   return validacion;
@@ -104,13 +108,25 @@ function compruebaErrores(elementoForm) {
 }
 
 /////// GESTIONAR LA VERIFICACIÓN DE DATOS ///////
+/**
+ * Aplica para que no se valide por HTML
+ */
 function noValidarconHTML() {
   document.getElementById("formulario").setAttribute("novalidate", true);
 }
+/**
+ * Comprueba la validación con js
+ * @param {Event} e 
+ * @returns 
+ */
 function comprobarInput(e) {
   return e.target.checkValidity();
 }
 
+/**
+ * muestra error en el campo oportuno y colorea de rojo
+ * @param {event} e 
+ */
 function mostrarErrores(e) {
   const mensajeError = getMensajeError(e.target.validity);
 
@@ -128,6 +144,11 @@ function mostrarErrores(e) {
   }
 }
 
+/**
+ * Gestiona el mensaje según el error
+ * @param {campo} evento 
+ * @returns Error del campo si ocurre
+ */
 function getMensajeError(evento) {
   let mensajeError = "";
 
@@ -148,6 +169,10 @@ function getMensajeError(evento) {
   return mensajeError;
 }
 
+/**
+ * Comprueba si una vez se ha terminado de escribir, sigue el error
+ * @param {event} e 
+ */
 function corregirCampo(e) {
   if (e.target.checkValidity()) {
     document.getElementById(`error-${e.target.name}`).innerHTML = "";
