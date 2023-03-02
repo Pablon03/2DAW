@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Título de la página</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-cvDRmTUkQ2CJhddWooUrUElL4P4xOaLpJ6t9q8sYn1tXRbJLh/tdWZb2nRQvJ+Bn" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- Barra de navegación principal -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#"><img class="w-50"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuYH031r4F30XgX8akmvrxJRVTOgnlHhqDfXb8PB_7kVNZduG6xiAjcBt949qH-e_fprw&usqp=CAU"
+                alt="Logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="./plantilla.html">Plantilla</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./masinformacion.html">Otra información</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
+        </div>
+    </nav>
+
+    <!-- Seccion con fichas -->
+    <div class="container pt-4">
+        <h2>Equipo</h2>
+        <ul class="nav nav-tabs">
+            <li class="active px-1"><a data-toggle="tab" href="#defensas"><i class="fas fa-shield-alt"></i> Defensas</a></li>
+            <li class="px-1"><a data-toggle="tab" href="#portero"><i class="fas fa-grip-lines"></i> Portero</a></li>
+            <li class="px-1"><a data-toggle="tab" href="#centrocampistas"><i class="fas fa-tshirt"></i> Centrocampistas</a></li>
+            <li class="px-1"><a data-toggle="tab" href="#delanteros"><i class="fas fa-futbol"></i> Delanteros</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="defensas" class="tab-pane fade in active">
+                <h3>Defensas</h3>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="thumbnail">
+                            <img src="https://via.placeholder.com/150x150" alt="Jugador 1">
+                            <div class="caption">
+                                <h4>Jugador 1</h4>
+                                <p>Posición: Defensa central</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="thumbnail">
+                            <img src="https://via.placeholder.com/150x150" alt="Jugador 2">
+                            <div class="caption">
+                                <h4>Jugador 2</h4>
+                                <p>Posición: Lateral derecho</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="thumbnail">
+                            <img src="https://via.placeholder.com/150x150" alt="Jugador 3">
+                            <div class="caption">
+                                <h4>Jugador 3</h4>
+                                <p>Posición: Lateral izquierdo</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="thumbnail">
+                            <img src="https://via.placeholder.com/150x150" alt="Jugador 4">
+                            <div class="caption">
+                                <h4>Jugador 4</h4>
+                                <p>Posición: Defensa central</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="thumbnail">
+                            <img src="https://via.placeholder.com/150x150" alt="Jugador 5">
+                            <div class="caption">
+                                <h4>Jugador 5</h4>
+                                <p>Posición: Defensa central</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="portero" class="tab-pane fade">
+                <h3>Portero</h3>
+                <p>Contenido de la ficha del portero.</p>
+            </div>
+            <div id="centrocampistas" class="tab-pane fade">
+                <h3>Centrocampistas</h3>
+                <p>Contenido de la ficha de los centrocampistas
+            </div>
+            <div id="delanteros" class="tab-pane fade">
+                <h3>Centrocampistas</h3>
+                <p>Contenido de la ficha de los centrocampistas
+            </div>
+
+</body>
+
+</html>
