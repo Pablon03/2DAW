@@ -137,6 +137,33 @@ if ($metodo === "getClientes") {
     // Este método tiene fines de depuración. Obtiene todas las citas del sistema,
     // no importa el cliente al que pertenezcan
     getCitas($conn);
+} else if ($metodo === "editarCliente") {
+    $clienteJSON = $datos->cliente;
+    editarCliente($conn, $clienteJSON);
+}
+
+function editarCliente($conn, $clienteJSON) {
+    $sqlquery = "SELECT * FROM Cliente WHERE Cliente.nif='$clienteJSON->nif'";
+    $clientesNIF = $conn->query($sqlquery);
+    $arrayClientesNIF = obtenerArrayDeConsultaClientes($clientesNIF);
+    
+    $devolver = (object) [
+        "resultado" => "ok",
+        "camposError" => array(),
+        "mensajesError" => array(),
+        "datos" => $clienteJSON
+    ];
+    if (count($arrayClientesNIF) === 1) {
+        $sqlquery = "UPDATE Cliente SET nombre='$clienteJSON->nombre', apellidos='$clienteJSON->apellidos', email='$clienteJSON->email', telefono='$clienteJSON->telefono' WHERE nif='$clienteJSON->nif'";
+        $conn->query($sqlquery);
+    } else {
+        $devolver->resultado = "no";
+        array_push($devolver->camposError, "nif");
+        array_push($devolver->mensajesError, "No se encontró el NIF $clienteJSON->nif en el sistema");
+    }
+    
+    echo json_encode($devolver);
+    
 }
 
 function setCita($conn, $citaJSON)
@@ -333,5 +360,3 @@ function eliminarBD($conn, $nombreBD)
     ];
     echo json_encode($devolver);
 }
-
-?>

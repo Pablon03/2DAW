@@ -55,10 +55,11 @@ function getFila(cliente) {
     <p class="text-gray-600">${telefonoFormateado}</p>
    </td>
    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5">
-    <a href="#" class="block text-teal-600 hover:text-teal-900 mr-2 crearCita" data-clientenombre="${cliente.nombre}"
+    <a href="#" class="block text-teal-600 hover:text-teal-900 mr-2 crearCita" data-clienteemail="${cliente.email}" data-clientetelefono="${cliente.telefono}" data-clientenombre="${cliente.nombre}"
    data-clienteapellidos="${cliente.apellidos}" data-clientenif="${cliente.nif}">Crear cita</a>
-    <a href="#" class="block text-teal-600 hover:text-teal-900 mr-2 verCitas" data-clientenombre="${cliente.nombre}" data-clienteapellidos="${cliente.apellidos}" data-clientenif="${cliente.nif}">Ver citas</a>
-    <a href="#" class="block text-red-600 hover:text-red-900 eliminar" data-clientenombre="${cliente.nombre}" data-clienteapellidos="${cliente.apellidos}" data-clientenif="${cliente.nif}">Eliminar cliente</a>
+    <a href="#" class="block text-teal-600 hover:text-teal-900 mr-2 verCitas" data-clienteemail="${cliente.email}" data-clientetelefono="${cliente.telefono}" data-clientenombre="${cliente.nombre}" data-clienteapellidos="${cliente.apellidos}" data-clientenif="${cliente.nif}">Ver citas</a>
+    <a href="#" class="block text-teal-600 hover:text-teal-900 mr-2 editarCliente" data-clienteemail="${cliente.email}" data-clientetelefono="${cliente.telefono}" data-clientenombre="${cliente.nombre}" data-clienteapellidos="${cliente.apellidos}" data-clientenif="${cliente.nif}">Editar Cliente</a>
+    <a href="#" class="block text-red-600 hover:text-red-900 eliminar" data-clienteemail="${cliente.email}" data-clientetelefono="${cliente.telefono}" data-clientenombre="${cliente.nombre}" data-clienteapellidos="${cliente.apellidos}" data-clientenif="${cliente.nif}">Eliminar cliente</a>
    </td>`;
   return tr;
 }
@@ -106,6 +107,9 @@ function comprobarClick(e) {
       window.location.href = "./lista-citas.html";
     } else if (e.target.classList[index] === "eliminar") {
       eliminarCliente(e);
+    } else if (e.target.classList[index] === "editarCliente"){
+      meterDatosStorage(e);
+      window.location.href = "./editar-cliente.html";
     }
   }
 }
@@ -118,10 +122,14 @@ function meterDatosStorage(e) {
   const nif = e.target.getAttribute("data-clientenif");
   const nombre = e.target.getAttribute("data-clientenombre");
   const apellidos = e.target.getAttribute("data-clienteapellidos");
+  const email = e.target.getAttribute("data-clienteemail");
+  const telefono = e.target.getAttribute("data-clientetelefono");
 
   localStorage.setItem("nifSeleccionado", nif);
   localStorage.setItem("nombreSeleccionado", nombre);
   localStorage.setItem("apellidoSeleccionado", apellidos);
+  localStorage.setItem("emailSeleccionado", email);
+  localStorage.setItem("telefonoSeleccionado", telefono);
 }
 
 /**
